@@ -1,0 +1,7 @@
+- [ ] strip ansi escapes
+- [ ] per-guild setting
+- [ ] setting persistence
+- [ ] templates
+- [ ] add more backends
+  - [ ] local-wandbox
+  - [ ] clsi

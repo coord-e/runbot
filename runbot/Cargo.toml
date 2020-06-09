@@ -1,0 +1,12 @@
+[package]
+name = "runbot"
+version = "0.1.0"
+authors = ["coord.e <me@coord-e.com>"]
+edition = "2018"
+
+[dependencies]
+serenity = "0.8.6"
+maplit = "1.0.2"
+itertools = "0.9.0"
+reqwest = "0.10.6"
+wandbox = { path = "../wandbox" }
