@@ -3,8 +3,8 @@
 #![feature(unwrap_infallible)]
 
 use std::collections::{HashMap, HashSet};
-use std::{env, fmt, io, result, str};
 use std::io::Write;
+use std::{env, fmt, io, result, str};
 
 use itertools::Itertools;
 use maplit::{convert_args, hashmap};
@@ -145,20 +145,20 @@ impl Setting {
 }
 
 #[derive(Debug, Clone)]
-struct GlobalSetting {
+struct GuildSetting {
     inner: HashMap<id::ChannelId, Setting>,
     current_default: Setting,
 }
 
-impl fmt::Display for GlobalSetting {
+impl fmt::Display for GuildSetting {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{:#?}", self)
     }
 }
 
-impl GlobalSetting {
-    fn new() -> GlobalSetting {
-        GlobalSetting {
+impl GuildSetting {
+    fn new() -> GuildSetting {
+        GuildSetting {
             inner: HashMap::new(),
             current_default: Setting::nice_language_map(),
         }
@@ -181,6 +181,25 @@ impl GlobalSetting {
         }
 
         self.current_default.extend(s);
+    }
+}
+
+#[derive(Debug, Clone)]
+struct GlobalSetting {
+    inner: HashMap<id::GuildId, GuildSetting>,
+}
+
+impl GlobalSetting {
+    fn new() -> GlobalSetting {
+        GlobalSetting {
+            inner: HashMap::new(),
+        }
+    }
+
+    fn get_mut_guild(&mut self, guild_id: &id::GuildId) -> &mut GuildSetting {
+        self.inner
+            .entry(guild_id.clone())
+            .or_insert_with(|| GuildSetting::new())
     }
 }
 
@@ -236,6 +255,7 @@ struct CommandContext {
     ctx: Context,
     is_global: bool,
     message: Message,
+    guild_id: id::GuildId,
     channel_id: id::ChannelId,
 }
 
@@ -255,12 +275,15 @@ impl CommandContext {
 
     fn set_setting(&self, setting: Setting) -> Result<()> {
         let mut data = self.ctx.data.try_write().ok_or(Error::Lock)?;
-        let settings = data.get_mut::<GlobalSetting>().unwrap();
+        let global = data.get_mut::<GlobalSetting>().unwrap();
+        let settings = global.get_mut_guild(&self.guild_id);
+
         if self.is_global {
             settings.set_all(setting);
         } else {
             settings.set_channel(&self.channel_id, setting);
         }
+
         Ok(())
     }
 
@@ -270,9 +293,16 @@ impl CommandContext {
         Ok(settings.clone())
     }
 
-    fn get_channel_setting(&self) -> Result<Setting> {
+    fn get_guild_setting(&self) -> Result<GuildSetting> {
         Ok(self
             .get_global_setting()?
+            .get_mut_guild(&self.guild_id)
+            .clone())
+    }
+
+    fn get_channel_setting(&self) -> Result<Setting> {
+        Ok(self
+            .get_guild_setting()?
             .get_channel(&self.channel_id)
             .clone())
     }
@@ -341,7 +371,8 @@ impl RunbotHandler {
     }
 
     fn command_help(&self, ctx: &CommandContext) -> Result<()> {
-        ctx.say("
+        ctx.say(
+            "
 `!runbot` のあとに `global` をつけると全チャンネルに対して設定ができるよ
 ```
 !runbot help            -- これ
@@ -357,11 +388,12 @@ impl RunbotHandler {
 !runbot run             -- 実行
 !runbot run-save        -- 実行して保存
 ```
-")
+",
+        )
     }
 
     fn command_show_setting(&self, ctx: &CommandContext) -> Result<()> {
-        let settings = ctx.get_global_setting()?;
+        let settings = ctx.get_guild_setting()?;
 
         let msg = if ctx.is_global {
             settings.to_string()
@@ -547,10 +579,16 @@ impl EventHandler for RunbotHandler {
             return;
         }
 
+        let guild_id = match msg.guild_id {
+            Some(id) => id,
+            None => return,
+        };
+
         let mut command_ctx = CommandContext {
             ctx,
             is_global: false,
             message: msg.clone(),
+            guild_id,
             channel_id: msg.channel_id.clone(),
         };
 

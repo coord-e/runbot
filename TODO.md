@@ -1,4 +1,3 @@
-- [ ] per-guild setting
 - [ ] setting persistence
 - [ ] templates
 - [ ] add more backends
