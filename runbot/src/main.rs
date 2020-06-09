@@ -4,6 +4,7 @@
 
 use std::collections::{HashMap, HashSet};
 use std::{env, fmt, io, result, str};
+use std::io::Write;
 
 use itertools::Itertools;
 use maplit::{convert_args, hashmap};
@@ -193,6 +194,7 @@ enum Error {
     Discord(serenity::Error),
     Network(reqwest::Error),
     IO(io::Error),
+    Encoding(str::Utf8Error),
 }
 
 impl From<reqwest::Error> for Error {
@@ -207,6 +209,24 @@ impl From<serenity::Error> for Error {
             serenity::Error::Io(e) => Error::IO(e),
             e => Error::Discord(e),
         }
+    }
+}
+
+impl From<io::Error> for Error {
+    fn from(e: io::Error) -> Error {
+        Error::IO(e)
+    }
+}
+
+impl<W> From<io::IntoInnerError<W>> for Error {
+    fn from(e: io::IntoInnerError<W>) -> Error {
+        Error::IO(e.into())
+    }
+}
+
+impl From<str::Utf8Error> for Error {
+    fn from(e: str::Utf8Error) -> Error {
+        Error::Encoding(e)
     }
 }
 
@@ -294,27 +314,30 @@ impl RunbotHandler {
         ctx: &CommandContext,
         res: wandbox::compile::Response,
     ) -> Result<()> {
+        let mut buf = strip_ansi_escapes::Writer::new(Vec::new());
+
         if let Some(msg) = res.compiler_message {
-            ctx.say(&format!("```{}```", msg))?;
+            writeln!(buf, "```{}```", msg)?;
         }
 
         if let Some(msg) = res.program_message {
-            ctx.say(&format!("```{}```", msg))?;
+            writeln!(buf, "```{}```", msg)?;
         }
 
         if let Some(s) = res.signal {
-            ctx.say(&format!("exit with signal: {}", s))?;
+            writeln!(buf, "exited with signal: {}", s)?;
         }
 
         if let Some(s) = res.status {
-            ctx.say(&format!("exit with status code {}", s))?;
+            writeln!(buf, "exited with status code {}", s)?;
         }
 
         if let Some(s) = res.url {
-            ctx.say(&s)?;
+            writeln!(buf, "{}", s)?;
         }
 
-        Ok(())
+        let msg = buf.into_inner()?;
+        ctx.say(str::from_utf8(&msg)?)
     }
 
     fn command_help(&self, ctx: &CommandContext) -> Result<()> {
@@ -577,6 +600,7 @@ impl EventHandler for RunbotHandler {
                 Error::Network(_) => command_ctx.say("めのまえが まっくらに なった!"),
                 Error::Discord(_) => command_ctx.say("ごめん"),
                 Error::IO(_) => command_ctx.say("体調が悪いので休みます"),
+                Error::Encoding(_) => command_ctx.say("ひーん"),
             };
             eprintln!("command returned an error: {:?}", e);
         }

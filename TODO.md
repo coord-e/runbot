@@ -1,4 +1,3 @@
-- [ ] strip ansi escapes
 - [ ] per-guild setting
 - [ ] setting persistence
 - [ ] templates
