@@ -1,3 +1,4 @@
+- [ ] stdin
 - [ ] setting persistence
 - [ ] templates
 - [ ] add more backends

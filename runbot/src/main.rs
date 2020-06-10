@@ -422,29 +422,33 @@ impl RunbotHandler {
         ctx.react(ReactionType::Unicode("✅".to_string()))
     }
 
-    fn command_remap(&self, ctx: &CommandContext, commandline: &[&str]) -> Result<()> {
+    fn command_remap(&self, ctx: &CommandContext, commandline: &[impl AsRef<str>]) -> Result<()> {
         let (lang, compiler) = match commandline {
-            &[lang, compiler] => (lang, compiler),
+            [lang, compiler] => (lang, compiler),
             _ => return self.unhandled(ctx),
         };
 
         let mut setting = Setting::default();
-        setting.language_map = hashmap![lang.to_owned() => compiler.parse().into_ok()];
+        setting.language_map =
+            hashmap![lang.as_ref().to_owned() => compiler.as_ref().parse().into_ok()];
 
         ctx.set_setting(setting)?;
 
         ctx.react(ReactionType::Unicode("✅".to_string()))
     }
 
-    fn command_default_options(&self, ctx: &CommandContext, commandline: &[&str]) -> Result<()> {
+    fn command_default_options(
+        &self,
+        ctx: &CommandContext,
+        commandline: &[impl AsRef<str>],
+    ) -> Result<()> {
         let (first, rest) = match commandline.split_first() {
             Some(x) => x,
             None => return self.unhandled(ctx),
         };
 
         let mut setting = Setting::default();
-        setting.default_compiler_options =
-            hashmap![first.parse().into_ok() => rest.into_iter().map(|o| o.to_string()).collect()];
+        setting.default_compiler_options = hashmap![first.as_ref().parse().into_ok() => rest.into_iter().map(|o| o.as_ref().to_string()).collect()];
 
         ctx.set_setting(setting)?;
 
@@ -467,14 +471,14 @@ impl RunbotHandler {
         Ok(())
     }
 
-    fn command_list(&self, ctx: &CommandContext, commandline: &[&str]) -> Result<()> {
+    fn command_list(&self, ctx: &CommandContext, commandline: &[impl AsRef<str>]) -> Result<()> {
         use wandbox::list::List;
         let List(cs) = wandbox::list()?;
 
-        if commandline.is_empty() {
-            return self.unhandled(ctx);
-        }
-        let language = commandline.join(" ");
+        let language = match commandline {
+            [x] => x.as_ref(),
+            _ => return self.unhandled(ctx),
+        };
 
         let msg = cs
             .into_iter()
@@ -490,17 +494,17 @@ impl RunbotHandler {
     fn command_run(
         &self,
         ctx: &CommandContext,
-        commandline: &[&str],
+        commandline: &[impl AsRef<str>],
         body: &str,
         save: bool,
     ) -> Result<()> {
         let block: CodeBlock = body.parse().into_ok();
 
         let (compiler_spec, options) = match commandline.split_first() {
-            Some((spec, [])) => (Some(spec.to_string()), None),
+            Some((spec, [])) => (Some(spec.as_ref().to_string()), None),
             Some((spec, opts)) => (
-                Some(spec.to_string()),
-                Some(opts.into_iter().map(|o| o.to_string()).collect()),
+                Some(spec.as_ref().to_string()),
+                Some(opts.into_iter().map(|o| o.as_ref().to_string()).collect()),
             ),
             None => (None, None),
         };
@@ -531,7 +535,7 @@ impl RunbotHandler {
         self.say_compile_result(ctx, res)
     }
 
-    fn command_implicit(&self, ctx: &CommandContext, content: &str) -> Result<()> {
+    fn handle_implicit(&self, ctx: &CommandContext, content: &str) -> Result<()> {
         let setting = ctx.get_channel_setting()?;
         if !setting.auto() {
             return Ok(());
@@ -571,6 +575,56 @@ impl RunbotHandler {
         let res = wandbox::compile(&req)?;
         self.say_compile_result(ctx, res)
     }
+
+    fn handle_explicit(&self, ctx: &mut CommandContext, line: &str, body: &str) -> Result<()> {
+        ctx.react(ReactionType::Unicode("👀".to_string()))?;
+
+        let line = if let Some(rest) = line.trim().strip_prefix("global") {
+            ctx.is_global = true;
+            rest
+        } else {
+            ctx.is_global = false;
+            line
+        };
+
+        let words = match shell_words::split(line) {
+            Ok(x) => x,
+            Err(_) => return self.unhandled(ctx),
+        };
+
+        let (command, commandline) = match words.split_first() {
+            Some(x) => x,
+            None => return self.unhandled(ctx),
+        };
+
+        match command.as_ref() {
+            "help" => self.command_help(ctx),
+            "show-setting" => self.command_show_setting(ctx),
+            "auto" => self.command_auto(ctx, true),
+            "no-auto" => self.command_auto(ctx, false),
+            "auto-save" => self.command_auto_save(ctx, true),
+            "no-auto-save" => self.command_auto_save(ctx, false),
+            "remap" => self.command_remap(ctx, commandline),
+            "default-options" => self.command_default_options(ctx, commandline),
+            "list-languages" => self.command_list_languages(ctx),
+            "list" => self.command_list(ctx, commandline),
+            "run" => self.command_run(ctx, commandline, body, false),
+            "run-save" => self.command_run(ctx, commandline, body, true),
+            _ => self.unhandled(ctx),
+        }
+    }
+
+    fn handle(&self, ctx: &mut CommandContext, content: &str) -> Result<()> {
+        let mut lines = content.lines();
+        let line = lines.next().unwrap();
+        let body = lines.join("\n");
+
+        if let Some(rest) = line.strip_prefix("!runbot") {
+            self.handle_explicit(ctx, rest, &body)
+        } else {
+            self.handle_implicit(ctx, content)
+        }
+    }
 }
 
 impl EventHandler for RunbotHandler {
@@ -592,48 +646,8 @@ impl EventHandler for RunbotHandler {
             channel_id: msg.channel_id.clone(),
         };
 
-        let mut lines = msg.content.lines();
-        let line = lines.next().unwrap();
-        let body = lines.join("\n");
-
-        let result = if let Some(rest) = line.strip_prefix("!runbot") {
-            command_ctx.react(ReactionType::Unicode("👀".to_string()));
-
-            let rest = if let Some(rest) = rest.trim().strip_prefix("global") {
-                command_ctx.is_global = true;
-                rest
-            } else {
-                command_ctx.is_global = false;
-                rest
-            };
-
-            let mut it = rest.trim().split(' ');
-            if let Some(command) = it.next() {
-                let commandline: Vec<_> = it.collect();
-                match command {
-                    "help" => self.command_help(&command_ctx),
-                    "show-setting" => self.command_show_setting(&command_ctx),
-                    "auto" => self.command_auto(&command_ctx, true),
-                    "no-auto" => self.command_auto(&command_ctx, false),
-                    "auto-save" => self.command_auto_save(&command_ctx, true),
-                    "no-auto-save" => self.command_auto_save(&command_ctx, false),
-                    "remap" => self.command_remap(&command_ctx, &commandline),
-                    "default-options" => self.command_default_options(&command_ctx, &commandline),
-                    "list-languages" => self.command_list_languages(&command_ctx),
-                    "list" => self.command_list(&command_ctx, &commandline),
-                    "run" => self.command_run(&command_ctx, &commandline, &body, false),
-                    "run-save" => self.command_run(&command_ctx, &commandline, &body, true),
-                    _ => self.unhandled(&command_ctx),
-                }
-            } else {
-                self.unhandled(&command_ctx)
-            }
-        } else {
-            self.command_implicit(&command_ctx, &msg.content)
-        };
-
-        if let Err(e) = result {
-            match e {
+        if let Err(e) = self.handle(&mut command_ctx, &msg.content) {
+            let _ = match e {
                 Error::Lock => command_ctx.say("争いはよくないですよ"),
                 Error::Network(_) => command_ctx.say("めのまえが まっくらに なった!"),
                 Error::Discord(_) => command_ctx.say("ごめん"),
