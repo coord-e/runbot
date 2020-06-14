@@ -5,13 +5,13 @@ use std::{fs, io};
 
 use runbot::model::compiler::{Compiler, CompilerID, CompilerName, CompilerVersion};
 use runbot::model::language::{Language, LanguageID, LanguageName};
-use runbot::Config;
+use runbot::Table;
 
 use err_derive::Error;
 use serde::Deserialize;
 
 #[derive(Deserialize)]
-struct ConfigFile {
+struct TableFile {
     languages: HashMap<String, LanguageData>,
 }
 
@@ -37,17 +37,17 @@ pub enum Error {
     IO(#[error(cause)] io::Error),
 }
 
-pub fn load_config(path: impl AsRef<Path>) -> Result<Config, Error> {
+pub fn load_table(path: impl AsRef<Path>) -> Result<Table, Error> {
     let content = fs::read(path)?;
-    let config_file = toml::from_slice(&content).unwrap();
-    to_config(config_file)
+    let table_file = toml::from_slice(&content).unwrap();
+    to_table(table_file)
 }
 
-fn to_config(config_file: ConfigFile) -> Result<Config, Error> {
+fn to_table(table_file: TableFile) -> Result<Table, Error> {
     let mut languages = HashMap::new();
     let mut compilers = HashMap::new();
 
-    for (language_name, language_data) in config_file.languages.into_iter() {
+    for (language_name, language_data) in table_file.languages.into_iter() {
         let language_id = LanguageID::from_u64(hash_to_u64(&language_name));
         let language_name = LanguageName::from_string(language_name);
 
@@ -83,7 +83,7 @@ fn to_config(config_file: ConfigFile) -> Result<Config, Error> {
         languages.insert(language_id, language);
     }
 
-    Ok(Config {
+    Ok(Table {
         languages,
         compilers,
     })

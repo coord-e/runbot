@@ -7,9 +7,9 @@ use runbot::model::language::Language;
 use itertools::Itertools;
 use tabular::Row;
 
-pub struct Table<T>(pub T);
+pub struct Display<T>(pub T);
 
-impl fmt::Display for Table<Vec<Compiler>> {
+impl fmt::Display for Display<Vec<Compiler>> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let mut table = tabular::Table::new("{:<}  {:<}");
         for c in &self.0 {
@@ -24,7 +24,7 @@ impl fmt::Display for Table<Vec<Compiler>> {
     }
 }
 
-impl fmt::Display for Table<Vec<Language>> {
+impl fmt::Display for Display<Vec<Language>> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let mut table = tabular::Table::new("{:<}  {:<}");
         for l in &self.0 {
@@ -38,7 +38,7 @@ impl fmt::Display for Table<Vec<Language>> {
     }
 }
 
-impl fmt::Display for Table<action::dump_setting::Output> {
+impl fmt::Display for Display<action::dump_setting::Output> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let mut table = tabular::Table::new("{:<}  {:<}");
         table.add_row(Row::new().with_cell("auto").with_cell(self.0.auto));

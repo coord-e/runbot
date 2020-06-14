@@ -4,12 +4,12 @@ use crate::model::compiler::{Compiler, CompilerID, CompilerName};
 use crate::model::language::{Language, LanguageID, LanguageName};
 
 #[derive(Clone)]
-pub struct Config {
+pub struct Table {
     pub compilers: HashMap<CompilerID, Compiler>,
     pub languages: HashMap<LanguageID, Language>,
 }
 
-impl Config {
+impl Table {
     pub fn get_compiler(&self, id: CompilerID) -> &Compiler {
         self.compilers.get(&id).expect("unknown compiler ID")
     }

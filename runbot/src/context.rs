@@ -1,19 +1,19 @@
 use std::sync::Arc;
 
-use crate::config::Config;
 use crate::model::channel_id::ChannelID;
 use crate::model::compiler::{Compiler, CompilerName};
 use crate::model::compiler_spec::CompilerSpec;
 use crate::model::guild_id::GuildID;
 use crate::model::language::{Language, LanguageName};
 use crate::setting::Setting;
+use crate::table::Table;
 use crate::{Error, Result};
 
 use parking_lot::Mutex;
 
 pub struct Context {
     pub(crate) setting: Setting,
-    pub(crate) config: Config,
+    pub(crate) table: Table,
     pub(crate) wandbox: wandbox::blocking::Client,
     pub(crate) guild_id: GuildID,
     pub(crate) channel_id: ChannelID,
@@ -25,12 +25,12 @@ impl Context {
         channel_id: ChannelID,
         wandbox_client: wandbox::blocking::Client,
         redis_connection: Arc<Mutex<redis::Connection>>,
-        table: Config,
+        table: Table,
     ) -> Context {
         let setting = Setting::new(redis_connection);
         Context {
             setting,
-            config: table,
+            table,
             wandbox: wandbox_client,
             guild_id,
             channel_id,
@@ -38,9 +38,9 @@ impl Context {
     }
 
     pub(crate) fn resolve_compiler_spec(&self, spec: &CompilerSpec) -> Result<&Compiler> {
-        if let Some(language) = self.config.find_language(spec.as_language_name()) {
+        if let Some(language) = self.table.find_language(spec.as_language_name()) {
             self.resolve_language(language)
-        } else if let Some(compiler) = self.config.find_compiler(spec.as_compiler_name()) {
+        } else if let Some(compiler) = self.table.find_compiler(spec.as_compiler_name()) {
             Ok(compiler)
         } else {
             Err(Error::UnknownCompilerSpec(spec.clone()))
@@ -48,7 +48,7 @@ impl Context {
     }
 
     pub(crate) fn resolve_language_name(&self, language_name: &LanguageName) -> Result<&Compiler> {
-        if let Some(language) = self.config.find_language(language_name) {
+        if let Some(language) = self.table.find_language(language_name) {
             self.resolve_language(language)
         } else {
             Err(Error::UnknownLanguageName(language_name.clone()))
@@ -61,7 +61,7 @@ impl Context {
             .get_remap(self.guild_id, self.channel_id, language.id())?
             .or_else(|| language.default_compiler_id())
         {
-            Ok(self.config.get_compiler(compiler_id))
+            Ok(self.table.get_compiler(compiler_id))
         } else {
             Err(Error::UnmappedLanguage(language.name().clone()))
         }
@@ -82,8 +82,8 @@ impl Context {
             .into_iter()
             .map(|(language_id, compiler_id)| {
                 (
-                    self.config.get_language(language_id).name(),
-                    self.config.get_compiler(compiler_id).name(),
+                    self.table.get_language(language_id).name(),
+                    self.table.get_compiler(compiler_id).name(),
                 )
             })
             .collect();

@@ -10,9 +10,9 @@ use runbot::model::guild_id::GuildID;
 
 use runbot_discord::code_input::CodeInput;
 use runbot_discord::command_context::CommandContext;
-use runbot_discord::config_file;
+use runbot_discord::display::Display;
 use runbot_discord::error::{Error, Result};
-use runbot_discord::table::Table;
+use runbot_discord::table_loader;
 
 use itertools::Itertools;
 use parking_lot::Mutex;
@@ -27,7 +27,7 @@ impl TypeMapKey for ConnectionKey {
 }
 
 struct RunbotHandler {
-    table: runbot::Config,
+    table: runbot::Table,
     wandbox_client: wandbox::blocking::Client,
 }
 
@@ -55,7 +55,7 @@ impl RunbotHandler {
 
     fn command_show_setting(&self, ctx: &CommandContext) -> Result<()> {
         let result = action::dump_setting(ctx)?;
-        ctx.print_code_block(Table(result).to_string())
+        ctx.print_code_block(Display(result).to_string())
     }
 
     fn command_auto(&self, ctx: &CommandContext, state: bool) -> Result<()> {
@@ -86,7 +86,7 @@ impl RunbotHandler {
 
     fn command_list_languages(&self, ctx: &CommandContext) -> Result<()> {
         let languages = action::list_languages(ctx);
-        ctx.print_code_block(Table(languages).to_string())
+        ctx.print_code_block(Display(languages).to_string())
     }
 
     fn command_list(&self, ctx: &CommandContext, commandline: &[impl AsRef<str>]) -> Result<()> {
@@ -96,7 +96,7 @@ impl RunbotHandler {
         };
 
         let compilers = action::list_compilers(ctx, language)?;
-        ctx.print_code_block(Table(compilers).to_string())
+        ctx.print_code_block(Display(compilers).to_string())
     }
 
     fn command_run(
@@ -256,10 +256,10 @@ impl EventHandler for RunbotHandler {
 fn main() -> result::Result<(), Box<dyn std::error::Error>> {
     let token = env::var("DISCORD_TOKEN")?;
     let redis_uri = env::var("REDIS_URI")?;
-    let config_path = env::var("CONFIG_PATH")?;
+    let table_path = env::var("TABLE_FILE_PATH")?;
     let wandbox_home = env::var("WANDBOX_HOME")?;
 
-    let table = config_file::load_config(config_path)?;
+    let table = table_loader::load_table(table_path)?;
     let wandbox_client = wandbox::blocking::Client::new(&wandbox_home)?;
 
     let mut client = Client::new(

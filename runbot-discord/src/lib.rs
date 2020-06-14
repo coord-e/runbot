@@ -6,6 +6,6 @@
 pub mod code_input;
 pub mod command_context;
 pub mod compile_result;
-pub mod config_file;
+pub mod display;
 pub mod error;
-pub mod table;
+pub mod table_loader;
