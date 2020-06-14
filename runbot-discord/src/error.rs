@@ -18,8 +18,10 @@ pub enum Error {
     InvalidCodeInput(#[error(source)] ParseCodeInputError),
     #[error(display = "malformed arguments: {}", _0)]
     MalformedArguments(#[error(source)] shell_words::ParseError),
-    #[error(display = "invalid number of arguments")]
-    InvalidNumberOfArguments,
+    #[error(display = "invalid number of arguments (expected: {})", _0)]
+    InvalidNumberOfArguments(u32),
+    #[error(display = "no command supplied")]
+    CommandIsMissing,
     #[error(display = "unknown command: {}", _0)]
     UnknownCommand(String),
 }

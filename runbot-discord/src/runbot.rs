@@ -55,7 +55,7 @@ impl RunbotHandler {
 
     fn command_show_setting(&self, ctx: &CommandContext) -> Result<()> {
         let result = action::dump_setting(ctx)?;
-        ctx.print_code_block(Display(result).to_string())
+        ctx.print_code_block(Display(&result).to_string())
     }
 
     fn command_auto(&self, ctx: &CommandContext, state: bool) -> Result<()> {
@@ -76,7 +76,7 @@ impl RunbotHandler {
                 lang.as_ref().parse().into_ok(),
                 compiler.as_ref().parse().into_ok(),
             ),
-            _ => return Err(Error::InvalidNumberOfArguments),
+            _ => return Err(Error::InvalidNumberOfArguments(2)),
         };
 
         action::remap_language(ctx, ctx.is_global, lang, compiler)?;
@@ -86,17 +86,17 @@ impl RunbotHandler {
 
     fn command_list_languages(&self, ctx: &CommandContext) -> Result<()> {
         let languages = action::list_languages(ctx);
-        ctx.print_code_block(Display(languages).to_string())
+        ctx.print_code_block(Display(&languages).to_string())
     }
 
     fn command_list(&self, ctx: &CommandContext, commandline: &[impl AsRef<str>]) -> Result<()> {
         let language = match commandline {
             [x] => x.as_ref().parse().into_ok(),
-            _ => return Err(Error::InvalidNumberOfArguments),
+            _ => return Err(Error::InvalidNumberOfArguments(1)),
         };
 
         let compilers = action::list_compilers(ctx, language)?;
-        ctx.print_code_block(Display(compilers).to_string())
+        ctx.print_code_block(Display(&compilers).to_string())
     }
 
     fn command_run(
@@ -162,7 +162,7 @@ impl RunbotHandler {
 
         let (command, commandline) = match words.split_first() {
             Some(x) => x,
-            None => return Err(Error::InvalidNumberOfArguments),
+            None => return Err(Error::CommandIsMissing),
         };
 
         match command.as_ref() {
@@ -218,30 +218,7 @@ impl EventHandler for RunbotHandler {
 
         let mut command_ctx = CommandContext::new(ctx, msg, runbot_ctx);
         if let Err(e) = self.handle(&mut command_ctx, &msg_content) {
-            let _ = match &e {
-                Error::Runbot(runbot::Error::UnknownLanguageName(name)) => {
-                    command_ctx.say(format!("`{}` ？うーん...", name))
-                }
-                Error::Runbot(runbot::Error::UnknownCompilerName(name)) => {
-                    command_ctx.say(format!("`{}` っ て 何 ？ 笑", name))
-                }
-                Error::Runbot(runbot::Error::UnknownCompilerSpec(name)) => {
-                    command_ctx.say(format!(
-                        "`{}` とはなんですか？普通、`{}` とはならないとおもうのですが...",
-                        name, name
-                    ))
-                }
-                Error::Runbot(runbot::Error::UnmappedLanguage(name)) => {
-                    command_ctx.say(format!("`{}` に対応するコンパイラが決まっていない", name))
-                }
-                Error::Runbot(runbot::Error::NoCompilerSpecified) => {
-                    command_ctx.say("どのコンパイラを使えばいいかわかんないよ〜")
-                }
-                Error::Runbot(runbot::Error::RemapMismatch(c, l)) => {
-                    command_ctx.say(format!("や、`{}` は `{}` でコンパイルできないよ", l, c))
-                }
-                _ => command_ctx.say("ごめん"),
-            };
+            let _ = command_ctx.say(Display(&e).to_string());
             eprintln!("command returned an error: {}", e);
         }
     }
