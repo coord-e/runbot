@@ -1,4 +1,3 @@
-#![feature(str_strip)]
 #![feature(unwrap_infallible)]
 
 use std::sync::Arc;

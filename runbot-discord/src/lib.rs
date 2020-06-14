@@ -1,4 +1,3 @@
-#![feature(str_strip)]
 #![feature(never_type)]
 #![feature(unwrap_infallible)]
 #![feature(pattern)]
