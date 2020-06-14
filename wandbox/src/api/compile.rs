@@ -32,12 +32,3 @@ pub struct Response {
     pub permlink: Option<String>,
     pub url: Option<String>,
 }
-
-pub fn compile(x: &Request) -> Result<Response, reqwest::Error> {
-    let client = reqwest::blocking::Client::new();
-    client
-        .post("https://wandbox.org/api/compile.json")
-        .json(x)
-        .send()?
-        .json()
-}

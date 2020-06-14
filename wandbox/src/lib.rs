@@ -1,4 +1,5 @@
-pub mod compile;
-pub mod list;
-pub use compile::compile;
-pub use list::list;
+pub mod api;
+pub mod blocking;
+pub mod error;
+
+pub use error::{Error, Result};

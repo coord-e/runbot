@@ -1,7 +1,7 @@
 use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
-pub struct List(pub Vec<Compiler>);
+pub struct Response(pub Vec<Compiler>);
 
 #[derive(Deserialize, Debug)]
 #[serde(rename_all = "kebab-case")]
@@ -39,8 +39,4 @@ pub struct SwitchOption {
     pub name: String,
     pub display_flags: String,
     pub display_name: String,
-}
-
-pub fn list() -> Result<List, reqwest::Error> {
-    reqwest::blocking::get("https://wandbox.org/api/list.json")?.json()
 }
