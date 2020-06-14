@@ -1,0 +1,4 @@
+export DISCORD_TOKEN=<TOKEN>
+export REDIS_URI=redis://localhost:6379/
+export TABLE_FILE_PATH=./table.toml
+export WANDBOX_HOME=https://wandbox.org/api/

@@ -1,5 +1,0 @@
-- [ ] redis pass
-- [ ] templates
-- [ ] add more backends
-  - [ ] local-wandbox
-  - [ ] clsi
