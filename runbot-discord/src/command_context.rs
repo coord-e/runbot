@@ -1,7 +1,6 @@
-use std::io::Write;
-use std::{ops, str};
+use std::{fmt, ops, str};
 
-use super::compile_result::CompileResult;
+use super::display::Display;
 use super::error::Result;
 
 use itertools::Itertools;
@@ -45,37 +44,17 @@ impl CommandContext {
         Ok(())
     }
 
-    pub fn print_code_block(&self, s: impl AsRef<str>) -> Result<()> {
-        self.say(format!("```{}```", s.as_ref()))
+    pub fn display<'a, T>(&self, x: &'a T) -> Result<()>
+    where
+        Display<'a, T>: fmt::Display,
+    {
+        self.say(Display(x).to_string())
     }
 
-    pub fn print_compile_result<R>(&self, res: R) -> Result<()>
+    pub fn display_in_code_block<'a, T>(&self, x: &'a T) -> Result<()>
     where
-        R: CompileResult,
+        Display<'a, T>: fmt::Display,
     {
-        let mut buf = strip_ansi_escapes::Writer::new(Vec::new());
-
-        if let Some(msg) = res.compiler_message() {
-            writeln!(buf, "```{}```", msg)?;
-        }
-
-        if let Some(msg) = res.program_message() {
-            writeln!(buf, "```{}```", msg)?;
-        }
-
-        if let Some(s) = res.signal() {
-            writeln!(buf, "exited with signal: {}", s)?;
-        }
-
-        if let Some(s) = res.status() {
-            writeln!(buf, "exited with status code {}", s)?;
-        }
-
-        if let Some(s) = res.url() {
-            writeln!(buf, "{}", s)?;
-        }
-
-        let msg = buf.into_inner()?;
-        self.say(str::from_utf8(&msg)?)
+        self.say(format!("```{}```", Display(x)))
     }
 }

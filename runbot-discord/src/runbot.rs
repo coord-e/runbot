@@ -10,7 +10,6 @@ use runbot::model::guild_id::GuildID;
 
 use runbot_discord::code_input::CodeInput;
 use runbot_discord::command_context::CommandContext;
-use runbot_discord::display::Display;
 use runbot_discord::error::{Error, Result};
 use runbot_discord::table_loader;
 
@@ -55,7 +54,7 @@ impl RunbotHandler {
 
     fn command_show_setting(&self, ctx: &CommandContext) -> Result<()> {
         let result = action::dump_setting(ctx)?;
-        ctx.print_code_block(Display(&result).to_string())
+        ctx.display_in_code_block(&result)
     }
 
     fn command_auto(&self, ctx: &CommandContext, state: bool) -> Result<()> {
@@ -86,7 +85,7 @@ impl RunbotHandler {
 
     fn command_list_languages(&self, ctx: &CommandContext) -> Result<()> {
         let languages = action::list_languages(ctx);
-        ctx.print_code_block(Display(&languages).to_string())
+        ctx.display_in_code_block(&languages)
     }
 
     fn command_list(&self, ctx: &CommandContext, commandline: &[impl AsRef<str>]) -> Result<()> {
@@ -96,7 +95,7 @@ impl RunbotHandler {
         };
 
         let compilers = action::list_compilers(ctx, language)?;
-        ctx.print_code_block(Display(&compilers).to_string())
+        ctx.display_in_code_block(&compilers)
     }
 
     fn command_run(
@@ -126,7 +125,7 @@ impl RunbotHandler {
             save,
         )?;
 
-        ctx.print_compile_result(result)
+        ctx.display(&result)
     }
 
     fn handle_implicit(&self, ctx: &CommandContext, content: &str) -> Result<()> {
@@ -142,7 +141,7 @@ impl RunbotHandler {
             Output::NoRun => Ok(()),
             Output::Run { .. } => {
                 ctx.react(ReactionType::Unicode("🆗".to_string()))?;
-                ctx.print_compile_result(result)
+                ctx.display(&result)
             }
         }
     }
@@ -218,7 +217,7 @@ impl EventHandler for RunbotHandler {
 
         let mut command_ctx = CommandContext::new(ctx, msg, runbot_ctx);
         if let Err(e) = self.handle(&mut command_ctx, &msg_content) {
-            let _ = command_ctx.say(Display(&e).to_string());
+            let _ = command_ctx.display(&e);
             eprintln!("command returned an error: {}", e);
         }
     }

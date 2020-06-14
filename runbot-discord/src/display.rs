@@ -4,7 +4,8 @@ use runbot::action;
 use runbot::model::compiler::Compiler;
 use runbot::model::language::Language;
 
-use crate::error::Error;
+use super::compile_result::CompileResult;
+use super::error::Error;
 
 use itertools::Itertools;
 use tabular::Row;
@@ -87,5 +88,41 @@ impl fmt::Display for Display<'_, Error> {
             Error::CommandIsMissing => write!(f, "？"),
             _ => write!(f, "ごめん"),
         }
+    }
+}
+
+fn strip_ansi_escapes(s: impl AsRef<str>) -> Result<String, fmt::Error> {
+    let s = strip_ansi_escapes::strip(s.as_ref()).map_err(|_| fmt::Error)?;
+    String::from_utf8(s).map_err(|_| fmt::Error)
+}
+
+impl<T> fmt::Display for Display<'_, T>
+where
+    T: CompileResult,
+{
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        if let Some(msg) = self.0.compiler_message() {
+            let msg = strip_ansi_escapes(msg)?;
+            writeln!(f, "```{}```", msg)?;
+        }
+
+        if let Some(msg) = self.0.program_message() {
+            let msg = strip_ansi_escapes(msg)?;
+            writeln!(f, "```{}```", msg)?;
+        }
+
+        if let Some(s) = self.0.signal() {
+            writeln!(f, "exited with signal: {}", s)?;
+        }
+
+        if let Some(s) = self.0.status() {
+            writeln!(f, "exited with status code {}", s)?;
+        }
+
+        if let Some(s) = self.0.url() {
+            writeln!(f, "{}", s)?;
+        }
+
+        Ok(())
     }
 }
