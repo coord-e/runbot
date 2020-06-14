@@ -1,2 +1,2 @@
 [workspace]
-members = [ "wandbox", "runbot" ]
+members = [ "wandbox", "runbot", "runbot-discord" ]

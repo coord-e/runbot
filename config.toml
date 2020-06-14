@@ -1,0 +1,1481 @@
+[languages."Bash script"]
+aliases = ["bash", "sh", "shell", "console"]
+[languages."Bash script".compilers.bash]
+version = "4.3.48(1)-release"
+wandbox-name = "bash"
+default = true
+
+[languages.C]
+aliases = ["h"]
+[languages.C.compilers."clang-10.0.0-c"]
+version = "10.0.0"
+wandbox-name = "clang-10.0.0-c"
+[languages.C.compilers."clang-3.1-c"]
+version = "3.1"
+wandbox-name = "clang-3.1-c"
+[languages.C.compilers."clang-3.2-c"]
+version = "3.2"
+wandbox-name = "clang-3.2-c"
+[languages.C.compilers."clang-3.3-c"]
+version = "3.3"
+wandbox-name = "clang-3.3-c"
+[languages.C.compilers."clang-3.4-c"]
+version = "3.4"
+wandbox-name = "clang-3.4-c"
+[languages.C.compilers."clang-3.5.0-c"]
+version = "3.5.0"
+wandbox-name = "clang-3.5.0-c"
+[languages.C.compilers."clang-3.6.0-c"]
+version = "3.6.0"
+wandbox-name = "clang-3.6.0-c"
+[languages.C.compilers."clang-3.7.1-c"]
+version = "3.7.1"
+wandbox-name = "clang-3.7.1-c"
+[languages.C.compilers."clang-3.8.1-c"]
+version = "3.8.1"
+wandbox-name = "clang-3.8.1-c"
+[languages.C.compilers."clang-3.9.1-c"]
+version = "3.9.1"
+wandbox-name = "clang-3.9.1-c"
+[languages.C.compilers."clang-4.0.0-c"]
+version = "4.0.0"
+wandbox-name = "clang-4.0.0-c"
+[languages.C.compilers."clang-4.0.1-c"]
+version = "4.0.1"
+wandbox-name = "clang-4.0.1-c"
+[languages.C.compilers."clang-5.0.0-c"]
+version = "5.0.0"
+wandbox-name = "clang-5.0.0-c"
+[languages.C.compilers."clang-6.0.0-c"]
+version = "6.0.0"
+wandbox-name = "clang-6.0.0-c"
+[languages.C.compilers."clang-6.0.1-c"]
+version = "6.0.1"
+wandbox-name = "clang-6.0.1-c"
+[languages.C.compilers."clang-7.0.0-c"]
+version = "7.0.0"
+wandbox-name = "clang-7.0.0-c"
+[languages.C.compilers."clang-8.0.0-c"]
+version = "8.0.0"
+wandbox-name = "clang-8.0.0-c"
+[languages.C.compilers."clang-9.0.0-c"]
+version = "9.0.0"
+wandbox-name = "clang-9.0.0-c"
+[languages.C.compilers.clang-head-c]
+wandbox-name = "clang-head-c"
+[languages.C.compilers."gcc-1.27-c"]
+version = "1.27"
+wandbox-name = "gcc-1.27-c"
+[languages.C.compilers."gcc-4.4.7-c"]
+version = "4.4.7"
+wandbox-name = "gcc-4.4.7-c"
+[languages.C.compilers."gcc-4.5.4-c"]
+version = "4.5.4"
+wandbox-name = "gcc-4.5.4-c"
+[languages.C.compilers."gcc-4.6.4-c"]
+version = "4.6.4"
+wandbox-name = "gcc-4.6.4-c"
+[languages.C.compilers."gcc-4.7.3-c"]
+version = "4.7.3"
+wandbox-name = "gcc-4.7.3-c"
+[languages.C.compilers."gcc-4.7.4-c"]
+version = "4.7.4"
+wandbox-name = "gcc-4.7.4-c"
+[languages.C.compilers."gcc-4.8.1-c"]
+version = "4.8.1"
+wandbox-name = "gcc-4.8.1-c"
+[languages.C.compilers."gcc-4.8.2-c"]
+version = "4.8.2"
+wandbox-name = "gcc-4.8.2-c"
+[languages.C.compilers."gcc-4.8.3-c"]
+version = "4.8.3"
+wandbox-name = "gcc-4.8.3-c"
+[languages.C.compilers."gcc-4.8.4-c"]
+version = "4.8.4"
+wandbox-name = "gcc-4.8.4-c"
+[languages.C.compilers."gcc-4.8.5-c"]
+version = "4.8.5"
+wandbox-name = "gcc-4.8.5-c"
+[languages.C.compilers."gcc-4.9.0-c"]
+version = "4.9.0"
+wandbox-name = "gcc-4.9.0-c"
+[languages.C.compilers."gcc-4.9.1-c"]
+version = "4.9.1"
+wandbox-name = "gcc-4.9.1-c"
+[languages.C.compilers."gcc-4.9.2-c"]
+version = "4.9.2"
+wandbox-name = "gcc-4.9.2-c"
+[languages.C.compilers."gcc-4.9.3-c"]
+version = "4.9.3"
+wandbox-name = "gcc-4.9.3-c"
+[languages.C.compilers."gcc-5.1.0-c"]
+version = "5.1.0"
+wandbox-name = "gcc-5.1.0-c"
+[languages.C.compilers."gcc-5.2.0-c"]
+version = "5.2.0"
+wandbox-name = "gcc-5.2.0-c"
+[languages.C.compilers."gcc-5.3.0-c"]
+version = "5.3.0"
+wandbox-name = "gcc-5.3.0-c"
+[languages.C.compilers."gcc-5.4.0-c"]
+version = "5.4.0"
+wandbox-name = "gcc-5.4.0-c"
+[languages.C.compilers."gcc-5.5.0-c"]
+version = "5.5.0"
+wandbox-name = "gcc-5.5.0-c"
+[languages.C.compilers."gcc-6.1.0-c"]
+version = "6.1.0"
+wandbox-name = "gcc-6.1.0-c"
+[languages.C.compilers."gcc-6.2.0-c"]
+version = "6.2.0"
+wandbox-name = "gcc-6.2.0-c"
+[languages.C.compilers."gcc-6.3.0-c"]
+version = "6.3.0"
+wandbox-name = "gcc-6.3.0-c"
+[languages.C.compilers."gcc-7.1.0-c"]
+version = "7.1.0"
+wandbox-name = "gcc-7.1.0-c"
+[languages.C.compilers."gcc-7.2.0-c"]
+version = "7.2.0"
+wandbox-name = "gcc-7.2.0-c"
+[languages.C.compilers."gcc-7.3.0-c"]
+version = "7.3.0"
+wandbox-name = "gcc-7.3.0-c"
+[languages.C.compilers."gcc-8.1.0-c"]
+version = "8.1.0"
+wandbox-name = "gcc-8.1.0-c"
+[languages.C.compilers."gcc-8.2.0-c"]
+version = "8.2.0"
+wandbox-name = "gcc-8.2.0-c"
+[languages.C.compilers."gcc-8.3.0-c"]
+version = "8.3.0"
+wandbox-name = "gcc-8.3.0-c"
+[languages.C.compilers."gcc-9.1.0-c"]
+version = "9.1.0"
+wandbox-name = "gcc-9.1.0-c"
+[languages.C.compilers."gcc-9.2.0-c"]
+version = "9.2.0"
+wandbox-name = "gcc-9.2.0-c"
+[languages.C.compilers."gcc-9.3.0-c"]
+version = "9.3.0"
+wandbox-name = "gcc-9.3.0-c"
+default = true
+[languages.C.compilers.gcc-head-c]
+wandbox-name = "gcc-head-c"
+
+[languages."C#"]
+aliases = ["cs", "csharp"]
+[languages."C#".compilers."dotnetcore-2.1.401"]
+version = "2.1.401"
+wandbox-name = "dotnetcore-2.1.401"
+default = true
+[languages."C#".compilers.dotnetcore-head]
+wandbox-name = "dotnetcore-head"
+[languages."C#".compilers."mono-3.12.0"]
+version = "3.12.0"
+wandbox-name = "mono-3.12.0"
+[languages."C#".compilers."mono-3.12.1"]
+version = "3.12.1"
+wandbox-name = "mono-3.12.1"
+[languages."C#".compilers."mono-3.2.0"]
+version = "3.2.0"
+wandbox-name = "mono-3.2.0"
+[languages."C#".compilers."mono-3.4.0"]
+version = "3.4.0"
+wandbox-name = "mono-3.4.0"
+[languages."C#".compilers."mono-4.8.0.382"]
+version = "4.8.0.382"
+wandbox-name = "mono-4.8.0.382"
+[languages."C#".compilers."mono-5.0.1.1"]
+version = "5.0.1.1"
+wandbox-name = "mono-5.0.1.1"
+[languages."C#".compilers."mono-5.4.0.199"]
+version = "5.4.0.199"
+wandbox-name = "mono-5.4.0.199"
+[languages."C#".compilers."mono-5.8.0.108"]
+version = "5.8.0.108"
+wandbox-name = "mono-5.8.0.108"
+[languages."C#".compilers.mono-head]
+wandbox-name = "mono-head"
+
+[languages."C++"]
+aliases = ["cpp", "hpp", "cc", "h++", "hh", "hxx", "cxx"]
+[languages."C++".compilers."clang-10.0.0"]
+version = "10.0.0"
+wandbox-name = "clang-10.0.0"
+[languages."C++".compilers."clang-3.1"]
+version = "3.1"
+wandbox-name = "clang-3.1"
+[languages."C++".compilers."clang-3.2"]
+version = "3.2"
+wandbox-name = "clang-3.2"
+[languages."C++".compilers."clang-3.3"]
+version = "3.3"
+wandbox-name = "clang-3.3"
+[languages."C++".compilers."clang-3.4"]
+version = "3.4"
+wandbox-name = "clang-3.4"
+[languages."C++".compilers."clang-3.5.0"]
+version = "3.5.0"
+wandbox-name = "clang-3.5.0"
+[languages."C++".compilers."clang-3.6.0"]
+version = "3.6.0"
+wandbox-name = "clang-3.6.0"
+[languages."C++".compilers."clang-3.7.1"]
+version = "3.7.1"
+wandbox-name = "clang-3.7.1"
+[languages."C++".compilers."clang-3.8.1"]
+version = "3.8.1"
+wandbox-name = "clang-3.8.1"
+[languages."C++".compilers."clang-3.9.1"]
+version = "3.9.1"
+wandbox-name = "clang-3.9.1"
+[languages."C++".compilers."clang-4.0.0"]
+version = "4.0.0"
+wandbox-name = "clang-4.0.0"
+[languages."C++".compilers."clang-4.0.1"]
+version = "4.0.1"
+wandbox-name = "clang-4.0.1"
+[languages."C++".compilers."clang-5.0.0"]
+version = "5.0.0"
+wandbox-name = "clang-5.0.0"
+[languages."C++".compilers."clang-6.0.0"]
+version = "6.0.0"
+wandbox-name = "clang-6.0.0"
+[languages."C++".compilers."clang-6.0.1"]
+version = "6.0.1"
+wandbox-name = "clang-6.0.1"
+[languages."C++".compilers."clang-7.0.0"]
+version = "7.0.0"
+wandbox-name = "clang-7.0.0"
+[languages."C++".compilers."clang-8.0.0"]
+version = "8.0.0"
+wandbox-name = "clang-8.0.0"
+[languages."C++".compilers."clang-9.0.0"]
+version = "9.0.0"
+wandbox-name = "clang-9.0.0"
+[languages."C++".compilers.clang-head]
+wandbox-name = "clang-head"
+[languages."C++".compilers."gcc-4.4.7"]
+version = "4.4.7"
+wandbox-name = "gcc-4.4.7"
+[languages."C++".compilers."gcc-4.5.4"]
+version = "4.5.4"
+wandbox-name = "gcc-4.5.4"
+[languages."C++".compilers."gcc-4.6.4"]
+version = "4.6.4"
+wandbox-name = "gcc-4.6.4"
+[languages."C++".compilers."gcc-4.7.3"]
+version = "4.7.3"
+wandbox-name = "gcc-4.7.3"
+[languages."C++".compilers."gcc-4.7.4"]
+version = "4.7.4"
+wandbox-name = "gcc-4.7.4"
+[languages."C++".compilers."gcc-4.8.1"]
+version = "4.8.1"
+wandbox-name = "gcc-4.8.1"
+[languages."C++".compilers."gcc-4.8.2"]
+version = "4.8.2"
+wandbox-name = "gcc-4.8.2"
+[languages."C++".compilers."gcc-4.8.3"]
+version = "4.8.3"
+wandbox-name = "gcc-4.8.3"
+[languages."C++".compilers."gcc-4.8.4"]
+version = "4.8.4"
+wandbox-name = "gcc-4.8.4"
+[languages."C++".compilers."gcc-4.8.5"]
+version = "4.8.5"
+wandbox-name = "gcc-4.8.5"
+[languages."C++".compilers."gcc-4.9.0"]
+version = "4.9.0"
+wandbox-name = "gcc-4.9.0"
+[languages."C++".compilers."gcc-4.9.1"]
+version = "4.9.1"
+wandbox-name = "gcc-4.9.1"
+[languages."C++".compilers."gcc-4.9.2"]
+version = "4.9.2"
+wandbox-name = "gcc-4.9.2"
+[languages."C++".compilers."gcc-4.9.3"]
+version = "4.9.3"
+wandbox-name = "gcc-4.9.3"
+[languages."C++".compilers."gcc-5.1.0"]
+version = "5.1.0"
+wandbox-name = "gcc-5.1.0"
+[languages."C++".compilers."gcc-5.2.0"]
+version = "5.2.0"
+wandbox-name = "gcc-5.2.0"
+[languages."C++".compilers."gcc-5.3.0"]
+version = "5.3.0"
+wandbox-name = "gcc-5.3.0"
+[languages."C++".compilers."gcc-5.4.0"]
+version = "5.4.0"
+wandbox-name = "gcc-5.4.0"
+[languages."C++".compilers."gcc-5.5.0"]
+version = "5.5.0"
+wandbox-name = "gcc-5.5.0"
+[languages."C++".compilers."gcc-6.1.0"]
+version = "6.1.0"
+wandbox-name = "gcc-6.1.0"
+[languages."C++".compilers."gcc-6.2.0"]
+version = "6.2.0"
+wandbox-name = "gcc-6.2.0"
+[languages."C++".compilers."gcc-6.3.0"]
+version = "6.3.0"
+wandbox-name = "gcc-6.3.0"
+[languages."C++".compilers."gcc-7.1.0"]
+version = "7.1.0"
+wandbox-name = "gcc-7.1.0"
+[languages."C++".compilers."gcc-7.2.0"]
+version = "7.2.0"
+wandbox-name = "gcc-7.2.0"
+[languages."C++".compilers."gcc-7.3.0"]
+version = "7.3.0"
+wandbox-name = "gcc-7.3.0"
+[languages."C++".compilers."gcc-8.1.0"]
+version = "8.1.0"
+wandbox-name = "gcc-8.1.0"
+[languages."C++".compilers."gcc-8.2.0"]
+version = "8.2.0"
+wandbox-name = "gcc-8.2.0"
+[languages."C++".compilers."gcc-8.3.0"]
+version = "8.3.0"
+wandbox-name = "gcc-8.3.0"
+[languages."C++".compilers."gcc-9.1.0"]
+version = "9.1.0"
+wandbox-name = "gcc-9.1.0"
+[languages."C++".compilers."gcc-9.2.0"]
+version = "9.2.0"
+wandbox-name = "gcc-9.2.0"
+[languages."C++".compilers."gcc-9.3.0"]
+version = "9.3.0"
+wandbox-name = "gcc-9.3.0"
+default = true
+[languages."C++".compilers.gcc-head]
+wandbox-name = "gcc-head"
+[languages."C++".compilers."zapcc-1.0.1"]
+version = "1.0.1"
+wandbox-name = "zapcc-1.0.1"
+[languages."C++".compilers."zapcc-2017.08"]
+version = "2017.08"
+wandbox-name = "zapcc-2017.08"
+
+[languages.CMake]
+aliases = []
+[languages.CMake.compilers.cmake-head]
+wandbox-name = "cmake-head"
+default = true
+
+[languages."C Preprocessor"]
+aliases = []
+[languages."C Preprocessor".compilers.clang-head-pp]
+wandbox-name = "clang-head-pp"
+[languages."C Preprocessor".compilers.gcc-head-pp]
+wandbox-name = "gcc-head-pp"
+default = true
+
+[languages.CoffeeScript]
+aliases = ["coffee", "cson", "iced"]
+[languages.CoffeeScript.compilers."coffeescript-1.10.0"]
+version = "1.10.0"
+wandbox-name = "coffeescript-1.10.0"
+[languages.CoffeeScript.compilers."coffeescript-1.11.1"]
+version = "1.11.1"
+wandbox-name = "coffeescript-1.11.1"
+[languages.CoffeeScript.compilers."coffeescript-1.12.3"]
+version = "1.12.3"
+wandbox-name = "coffeescript-1.12.3"
+[languages.CoffeeScript.compilers."coffeescript-1.12.6"]
+version = "1.12.6"
+wandbox-name = "coffeescript-1.12.6"
+[languages.CoffeeScript.compilers."coffeescript-1.12.7"]
+version = "1.12.7"
+wandbox-name = "coffeescript-1.12.7"
+default = true
+[languages.CoffeeScript.compilers.coffeescript-head]
+wandbox-name = "coffeescript-head"
+
+[languages.Crystal]
+aliases = ["cr"]
+[languages.Crystal.compilers."crystal-0.20.5"]
+version = "0.20.5"
+wandbox-name = "crystal-0.20.5"
+[languages.Crystal.compilers."crystal-0.21.1"]
+version = "0.21.1"
+wandbox-name = "crystal-0.21.1"
+[languages.Crystal.compilers."crystal-0.22.0"]
+version = "0.22.0"
+wandbox-name = "crystal-0.22.0"
+[languages.Crystal.compilers."crystal-0.23.1"]
+version = "0.23.1"
+wandbox-name = "crystal-0.23.1"
+[languages.Crystal.compilers."crystal-0.24.1"]
+version = "0.24.1"
+wandbox-name = "crystal-0.24.1"
+default = true
+[languages.Crystal.compilers.crystal-head]
+wandbox-name = "crystal-head"
+
+[languages.D]
+aliases = []
+[languages.D.compilers."dmd-2.069.2"]
+version = "2.069.2"
+wandbox-name = "dmd-2.069.2"
+[languages.D.compilers."dmd-2.073.0"]
+version = "2.073.0"
+wandbox-name = "dmd-2.073.0"
+[languages.D.compilers."dmd-2.074.1"]
+version = "2.074.1"
+wandbox-name = "dmd-2.074.1"
+[languages.D.compilers."dmd-2.076.0"]
+version = "2.076.0"
+wandbox-name = "dmd-2.076.0"
+default = true
+[languages.D.compilers.dmd-head]
+wandbox-name = "dmd-head"
+[languages.D.compilers.gdc-head]
+wandbox-name = "gdc-head"
+[languages.D.compilers."ldc-1.1.1"]
+version = "1.1.1 dmd-2.071.2"
+wandbox-name = "ldc-1.1.1"
+[languages.D.compilers."ldc-1.2.0"]
+version = "1.2.0 dmd-2.072.2"
+wandbox-name = "ldc-1.2.0"
+[languages.D.compilers."ldc-1.4.0"]
+version = "1.4.0 dmd-2.074.1"
+wandbox-name = "ldc-1.4.0"
+[languages.D.compilers.ldc-head]
+wandbox-name = "ldc-head"
+
+[languages.Elixir]
+aliases = []
+[languages.Elixir.compilers."elixir-1.3.4"]
+version = "1.3.4"
+wandbox-name = "elixir-1.3.4"
+[languages.Elixir.compilers."elixir-1.4.1"]
+version = "1.4.1"
+wandbox-name = "elixir-1.4.1"
+[languages.Elixir.compilers."elixir-1.4.5"]
+version = "1.4.5"
+wandbox-name = "elixir-1.4.5"
+[languages.Elixir.compilers."elixir-1.5.0"]
+version = "1.5.0"
+wandbox-name = "elixir-1.5.0"
+[languages.Elixir.compilers."elixir-1.5.1"]
+version = "1.5.1"
+wandbox-name = "elixir-1.5.1"
+[languages.Elixir.compilers."elixir-1.5.2"]
+version = "1.5.2"
+wandbox-name = "elixir-1.5.2"
+[languages.Elixir.compilers."elixir-1.6.0"]
+version = "1.6.0"
+wandbox-name = "elixir-1.6.0"
+[languages.Elixir.compilers."elixir-1.6.6"]
+version = "1.6.6"
+wandbox-name = "elixir-1.6.6"
+[languages.Elixir.compilers."elixir-1.7.1"]
+version = "1.7.1"
+wandbox-name = "elixir-1.7.1"
+default = true
+[languages.Elixir.compilers.elixir-head]
+wandbox-name = "elixir-head"
+
+[languages.Erlang]
+aliases = ["erl"]
+[languages.Erlang.compilers."erlang-17.5"]
+version = "17.5"
+wandbox-name = "erlang-17.5"
+[languages.Erlang.compilers."erlang-18.3"]
+version = "18.3"
+wandbox-name = "erlang-18.3"
+[languages.Erlang.compilers."erlang-19.2"]
+version = "19.2"
+wandbox-name = "erlang-19.2"
+[languages.Erlang.compilers."erlang-20.0"]
+version = "20.0"
+wandbox-name = "erlang-20.0"
+[languages.Erlang.compilers."erlang-20.1"]
+version = "20.1"
+wandbox-name = "erlang-20.1"
+[languages.Erlang.compilers."erlang-21.0"]
+version = "21.0"
+wandbox-name = "erlang-21.0"
+[languages.Erlang.compilers."erlang-21.2"]
+version = "21.2"
+wandbox-name = "erlang-21.2"
+default = true
+[languages.Erlang.compilers.erlang-head]
+wandbox-name = "erlang-head"
+
+[languages."F#"]
+aliases = ["fsharp", "fs"]
+[languages."F#".compilers."fsharp-3.1.1.26"]
+version = "3.1.1.26"
+wandbox-name = "fsharp-3.1.1.26"
+[languages."F#".compilers."fsharp-4.0.0.4"]
+version = "4.0.0.4"
+wandbox-name = "fsharp-4.0.0.4"
+[languages."F#".compilers."fsharp-4.1.25"]
+version = "4.1.25"
+wandbox-name = "fsharp-4.1.25"
+[languages."F#".compilers."fsharp-4.1.34"]
+version = "4.1.34"
+wandbox-name = "fsharp-4.1.34"
+default = true
+[languages."F#".compilers.fsharp-head]
+wandbox-name = "fsharp-head"
+
+[languages.Go]
+aliases = ["golang"]
+[languages.Go.compilers."go-1.10"]
+version = "1.10"
+wandbox-name = "go-1.10"
+[languages.Go.compilers."go-1.11"]
+version = "1.11"
+wandbox-name = "go-1.11"
+[languages.Go.compilers."go-1.11.1"]
+version = "1.11.1"
+wandbox-name = "go-1.11.1"
+[languages.Go.compilers."go-1.11.11"]
+version = "1.11.11"
+wandbox-name = "go-1.11.11"
+[languages.Go.compilers."go-1.11.12"]
+version = "1.11.12"
+wandbox-name = "go-1.11.12"
+[languages.Go.compilers."go-1.11.13"]
+version = "1.11.13"
+wandbox-name = "go-1.11.13"
+[languages.Go.compilers."go-1.12.10"]
+version = "1.12.10"
+wandbox-name = "go-1.12.10"
+[languages.Go.compilers."go-1.12.11"]
+version = "1.12.11"
+wandbox-name = "go-1.12.11"
+[languages.Go.compilers."go-1.12.12"]
+version = "1.12.12"
+wandbox-name = "go-1.12.12"
+[languages.Go.compilers."go-1.12.13"]
+version = "1.12.13"
+wandbox-name = "go-1.12.13"
+[languages.Go.compilers."go-1.12.14"]
+version = "1.12.14"
+wandbox-name = "go-1.12.14"
+[languages.Go.compilers."go-1.12.15"]
+version = "1.12.15"
+wandbox-name = "go-1.12.15"
+[languages.Go.compilers."go-1.12.16"]
+version = "1.12.16"
+wandbox-name = "go-1.12.16"
+[languages.Go.compilers."go-1.12.17"]
+version = "1.12.17"
+wandbox-name = "go-1.12.17"
+[languages.Go.compilers."go-1.12.6"]
+version = "1.12.6"
+wandbox-name = "go-1.12.6"
+[languages.Go.compilers."go-1.12.7"]
+version = "1.12.7"
+wandbox-name = "go-1.12.7"
+[languages.Go.compilers."go-1.12.8"]
+version = "1.12.8"
+wandbox-name = "go-1.12.8"
+[languages.Go.compilers."go-1.12.9"]
+version = "1.12.9"
+wandbox-name = "go-1.12.9"
+[languages.Go.compilers."go-1.13"]
+version = "1.13"
+wandbox-name = "go-1.13"
+[languages.Go.compilers."go-1.13.1"]
+version = "1.13.1"
+wandbox-name = "go-1.13.1"
+[languages.Go.compilers."go-1.13.10"]
+version = "1.13.10"
+wandbox-name = "go-1.13.10"
+[languages.Go.compilers."go-1.13.2"]
+version = "1.13.2"
+wandbox-name = "go-1.13.2"
+[languages.Go.compilers."go-1.13.3"]
+version = "1.13.3"
+wandbox-name = "go-1.13.3"
+[languages.Go.compilers."go-1.13.4"]
+version = "1.13.4"
+wandbox-name = "go-1.13.4"
+[languages.Go.compilers."go-1.13.5"]
+version = "1.13.5"
+wandbox-name = "go-1.13.5"
+[languages.Go.compilers."go-1.13.6"]
+version = "1.13.6"
+wandbox-name = "go-1.13.6"
+[languages.Go.compilers."go-1.13.7"]
+version = "1.13.7"
+wandbox-name = "go-1.13.7"
+[languages.Go.compilers."go-1.13.8"]
+version = "1.13.8"
+wandbox-name = "go-1.13.8"
+[languages.Go.compilers."go-1.13.9"]
+version = "1.13.9"
+wandbox-name = "go-1.13.9"
+[languages.Go.compilers."go-1.14"]
+version = "1.14"
+wandbox-name = "go-1.14"
+[languages.Go.compilers."go-1.14.1"]
+version = "1.14.1"
+wandbox-name = "go-1.14.1"
+default = true
+[languages.Go.compilers."go-1.14.2"]
+version = "1.14.2"
+wandbox-name = "go-1.14.2"
+[languages.Go.compilers."go-1.5.4"]
+version = "1.5.4"
+wandbox-name = "go-1.5.4"
+[languages.Go.compilers."go-1.6.3"]
+version = "1.6.3"
+wandbox-name = "go-1.6.3"
+[languages.Go.compilers."go-1.7.5"]
+version = "1.7.5"
+wandbox-name = "go-1.7.5"
+[languages.Go.compilers."go-1.8"]
+version = "1.8"
+wandbox-name = "go-1.8"
+[languages.Go.compilers."go-1.8.3"]
+version = "1.8.3"
+wandbox-name = "go-1.8.3"
+[languages.Go.compilers."go-1.9"]
+version = "1.9"
+wandbox-name = "go-1.9"
+[languages.Go.compilers.go-head]
+wandbox-name = "go-head"
+
+[languages.Groovy]
+aliases = []
+[languages.Groovy.compilers."groovy-2.4.11"]
+version = "2.4.11"
+wandbox-name = "groovy-2.4.11"
+default = true
+[languages.Groovy.compilers."groovy-2.4.8"]
+version = "2.4.8"
+wandbox-name = "groovy-2.4.8"
+[languages.Groovy.compilers.groovy-head]
+wandbox-name = "groovy-head"
+
+[languages.Haskell]
+aliases = ["hs"]
+[languages.Haskell.compilers."ghc-7.10.3"]
+version = "7.10.3"
+wandbox-name = "ghc-7.10.3"
+[languages.Haskell.compilers."ghc-7.6.3"]
+version = "7.6.3"
+wandbox-name = "ghc-7.6.3"
+[languages.Haskell.compilers."ghc-7.8.3"]
+version = "7.8.3"
+wandbox-name = "ghc-7.8.3"
+[languages.Haskell.compilers."ghc-8.0.2"]
+version = "8.0.2"
+wandbox-name = "ghc-8.0.2"
+[languages.Haskell.compilers."ghc-8.2.1"]
+version = "8.2.1"
+wandbox-name = "ghc-8.2.1"
+[languages.Haskell.compilers."ghc-8.4.2"]
+version = "8.4.2"
+wandbox-name = "ghc-8.4.2"
+default = true
+[languages.Haskell.compilers.ghc-head]
+wandbox-name = "ghc-head"
+
+[languages.Java]
+aliases = ["jsp"]
+[languages.Java.compilers.openjdk-head]
+wandbox-name = "openjdk-head"
+[languages.Java.compilers."openjdk-jdk-10+13"]
+version = "jdk-10+13"
+wandbox-name = "openjdk-jdk-10+13"
+default = true
+[languages.Java.compilers."openjdk-jdk-10+23"]
+version = "jdk-10+23"
+wandbox-name = "openjdk-jdk-10+23"
+[languages.Java.compilers."openjdk-jdk-11+28"]
+version = "jdk-11+28"
+wandbox-name = "openjdk-jdk-11+28"
+[languages.Java.compilers."openjdk-jdk-9+155"]
+version = "jdk-9+155"
+wandbox-name = "openjdk-jdk-9+155"
+[languages.Java.compilers."openjdk-jdk-9+175"]
+version = "jdk-9+175"
+wandbox-name = "openjdk-jdk-9+175"
+[languages.Java.compilers."openjdk-jdk-9+181"]
+version = "jdk-9+181"
+wandbox-name = "openjdk-jdk-9+181"
+[languages.Java.compilers.openjdk-jdk7u121-b00]
+version = "jdk7u121-b00"
+wandbox-name = "openjdk-jdk7u121-b00"
+[languages.Java.compilers.openjdk-jdk8u121-b13]
+version = "jdk8u121-b13"
+wandbox-name = "openjdk-jdk8u121-b13"
+
+[languages.JavaScript]
+aliases = ["js", "jsx", "mjs", "cjs"]
+[languages.JavaScript.compilers."nodejs-10.16.0"]
+version = "10.16.0"
+wandbox-name = "nodejs-10.16.0"
+[languages.JavaScript.compilers."nodejs-10.20.1"]
+version = "10.20.1"
+wandbox-name = "nodejs-10.20.1"
+[languages.JavaScript.compilers."nodejs-11.15.0"]
+version = "11.15.0"
+wandbox-name = "nodejs-11.15.0"
+[languages.JavaScript.compilers."nodejs-12.16.2"]
+version = "12.16.2"
+wandbox-name = "nodejs-12.16.2"
+[languages.JavaScript.compilers."nodejs-13.13.0"]
+version = "13.13.0"
+wandbox-name = "nodejs-13.13.0"
+[languages.JavaScript.compilers."nodejs-14.0.0"]
+version = "14.0.0"
+wandbox-name = "nodejs-14.0.0"
+default = true
+[languages.JavaScript.compilers."nodejs-4.7.3"]
+version = "4.7.3"
+wandbox-name = "nodejs-4.7.3"
+[languages.JavaScript.compilers."nodejs-5.12.0"]
+version = "5.12.0"
+wandbox-name = "nodejs-5.12.0"
+[languages.JavaScript.compilers."nodejs-6.11.0"]
+version = "6.11.0"
+wandbox-name = "nodejs-6.11.0"
+[languages.JavaScript.compilers."nodejs-6.9.5"]
+version = "6.9.5"
+wandbox-name = "nodejs-6.9.5"
+[languages.JavaScript.compilers."nodejs-7.5.0"]
+version = "7.5.0"
+wandbox-name = "nodejs-7.5.0"
+[languages.JavaScript.compilers."nodejs-8.1.2"]
+version = "8.1.2"
+wandbox-name = "nodejs-8.1.2"
+[languages.JavaScript.compilers."nodejs-8.6.0"]
+version = "8.6.0"
+wandbox-name = "nodejs-8.6.0"
+[languages.JavaScript.compilers."nodejs-8.9.0"]
+version = "8.9.0"
+wandbox-name = "nodejs-8.9.0"
+[languages.JavaScript.compilers.nodejs-head]
+wandbox-name = "nodejs-head"
+[languages.JavaScript.compilers."spidermonkey-24.2.0"]
+version = "24.2.0"
+wandbox-name = "spidermonkey-24.2.0"
+[languages.JavaScript.compilers."spidermonkey-31.2.0.rc0"]
+version = "31.2.0.rc0"
+wandbox-name = "spidermonkey-31.2.0.rc0"
+[languages.JavaScript.compilers."spidermonkey-38.2.1.rc0"]
+version = "38.2.1.rc0"
+wandbox-name = "spidermonkey-38.2.1.rc0"
+[languages.JavaScript.compilers."spidermonkey-45.0.2"]
+version = "45.0.2"
+wandbox-name = "spidermonkey-45.0.2"
+
+[languages."Lazy K"]
+aliases = []
+[languages."Lazy K".compilers.lazyk]
+wandbox-name = "lazyk"
+default = true
+
+[languages.Lisp]
+aliases = []
+[languages.Lisp.compilers."clisp-2.49"]
+version = "2.49"
+wandbox-name = "clisp-2.49"
+[languages.Lisp.compilers."sbcl-1.2.16"]
+version = "1.2.16"
+wandbox-name = "sbcl-1.2.16"
+[languages.Lisp.compilers."sbcl-1.3.15"]
+version = "1.3.15"
+wandbox-name = "sbcl-1.3.15"
+[languages.Lisp.compilers."sbcl-1.3.18"]
+version = "1.3.18"
+wandbox-name = "sbcl-1.3.18"
+default = true
+[languages.Lisp.compilers.sbcl-head]
+wandbox-name = "sbcl-head"
+
+[languages.Lua]
+aliases = []
+[languages.Lua.compilers."lua-5.2.2"]
+version = "5.2.2"
+wandbox-name = "lua-5.2.2"
+[languages.Lua.compilers."lua-5.3.0"]
+version = "5.3.0"
+wandbox-name = "lua-5.3.0"
+[languages.Lua.compilers."lua-5.3.4"]
+version = "5.3.4"
+wandbox-name = "lua-5.3.4"
+default = true
+[languages.Lua.compilers."luajit-2.0.2"]
+version = "2.0.2"
+wandbox-name = "luajit-2.0.2"
+[languages.Lua.compilers."luajit-2.0.3"]
+version = "2.0.3"
+wandbox-name = "luajit-2.0.3"
+[languages.Lua.compilers."luajit-2.0.4"]
+version = "2.0.4"
+wandbox-name = "luajit-2.0.4"
+[languages.Lua.compilers."luajit-2.0.5"]
+version = "2.0.5"
+wandbox-name = "luajit-2.0.5"
+[languages.Lua.compilers.luajit-head]
+wandbox-name = "luajit-head"
+
+[languages.Nim]
+aliases = []
+[languages.Nim.compilers."nim-0.16.0"]
+version = "0.16.0"
+wandbox-name = "nim-0.16.0"
+[languages.Nim.compilers."nim-0.17.0"]
+version = "0.17.0"
+wandbox-name = "nim-0.17.0"
+[languages.Nim.compilers."nim-0.17.2"]
+version = "0.17.2"
+wandbox-name = "nim-0.17.2"
+[languages.Nim.compilers."nim-0.18.0"]
+version = "0.18.0"
+wandbox-name = "nim-0.18.0"
+[languages.Nim.compilers."nim-0.19.0"]
+version = "0.19.0"
+wandbox-name = "nim-0.19.0"
+[languages.Nim.compilers."nim-0.19.2"]
+version = "0.19.2"
+wandbox-name = "nim-0.19.2"
+[languages.Nim.compilers."nim-0.19.4"]
+version = "0.19.4"
+wandbox-name = "nim-0.19.4"
+[languages.Nim.compilers."nim-0.19.6"]
+version = "0.19.6"
+wandbox-name = "nim-0.19.6"
+[languages.Nim.compilers."nim-0.20.0"]
+version = "0.20.0"
+wandbox-name = "nim-0.20.0"
+[languages.Nim.compilers."nim-0.20.2"]
+version = "0.20.2"
+wandbox-name = "nim-0.20.2"
+[languages.Nim.compilers."nim-1.0.0"]
+version = "1.0.0"
+wandbox-name = "nim-1.0.0"
+[languages.Nim.compilers."nim-1.0.2"]
+version = "1.0.2"
+wandbox-name = "nim-1.0.2"
+[languages.Nim.compilers."nim-1.0.4"]
+version = "1.0.4"
+wandbox-name = "nim-1.0.4"
+[languages.Nim.compilers."nim-1.0.6"]
+version = "1.0.6"
+wandbox-name = "nim-1.0.6"
+[languages.Nim.compilers."nim-1.2.0"]
+version = "1.2.0"
+wandbox-name = "nim-1.2.0"
+default = true
+[languages.Nim.compilers.nim-head]
+wandbox-name = "nim-head"
+
+[languages.OCaml]
+aliases = ["ml"]
+[languages.OCaml.compilers."ocaml-4.04.0"]
+version = "4.04.0"
+wandbox-name = "ocaml-4.04.0"
+[languages.OCaml.compilers."ocaml-4.04.2"]
+version = "4.04.2"
+wandbox-name = "ocaml-4.04.2"
+[languages.OCaml.compilers."ocaml-4.05.0"]
+version = "4.05.0"
+wandbox-name = "ocaml-4.05.0"
+[languages.OCaml.compilers."ocaml-4.06.1"]
+version = "4.06.1"
+wandbox-name = "ocaml-4.06.1"
+default = true
+[languages.OCaml.compilers.ocaml-head]
+wandbox-name = "ocaml-head"
+
+[languages.OpenSSL]
+aliases = []
+[languages.OpenSSL.compilers."openssl-0.9.8zh"]
+version = "0.9.8zh"
+wandbox-name = "openssl-0.9.8zh"
+[languages.OpenSSL.compilers."openssl-1.0.0s"]
+version = "1.0.0s"
+wandbox-name = "openssl-1.0.0s"
+[languages.OpenSSL.compilers."openssl-1.0.1u"]
+version = "1.0.1u"
+wandbox-name = "openssl-1.0.1u"
+[languages.OpenSSL.compilers."openssl-1.0.2k"]
+version = "1.0.2k"
+wandbox-name = "openssl-1.0.2k"
+[languages.OpenSSL.compilers."openssl-1.0.2l"]
+version = "1.0.2l"
+wandbox-name = "openssl-1.0.2l"
+[languages.OpenSSL.compilers."openssl-1.1.0e"]
+version = "1.1.0e"
+wandbox-name = "openssl-1.1.0e"
+[languages.OpenSSL.compilers."openssl-1.1.0f"]
+version = "1.1.0f"
+wandbox-name = "openssl-1.1.0f"
+default = true
+[languages.OpenSSL.compilers.openssl-head]
+wandbox-name = "openssl-head"
+
+[languages.PHP]
+aliases = []
+[languages.PHP.compilers."php-5.5.6"]
+version = "5.5.6"
+wandbox-name = "php-5.5.6"
+[languages.PHP.compilers."php-5.6.30"]
+version = "5.6.30"
+wandbox-name = "php-5.6.30"
+[languages.PHP.compilers."php-7.1.2"]
+version = "7.1.2"
+wandbox-name = "php-7.1.2"
+[languages.PHP.compilers."php-7.1.6"]
+version = "7.1.6"
+wandbox-name = "php-7.1.6"
+[languages.PHP.compilers."php-7.3.3"]
+version = "7.3.3"
+wandbox-name = "php-7.3.3"
+default = true
+[languages.PHP.compilers.php-head]
+wandbox-name = "php-head"
+
+[languages.Pascal]
+aliases = []
+[languages.Pascal.compilers."fpc-2.6.2"]
+version = "2.6.2"
+wandbox-name = "fpc-2.6.2"
+[languages.Pascal.compilers."fpc-2.6.4"]
+version = "2.6.4"
+wandbox-name = "fpc-2.6.4"
+[languages.Pascal.compilers."fpc-3.0.2"]
+version = "3.0.2"
+wandbox-name = "fpc-3.0.2"
+default = true
+[languages.Pascal.compilers.fpc-head]
+wandbox-name = "fpc-head"
+
+[languages.Perl]
+aliases = ["pl", "pm"]
+[languages.Perl.compilers."perl-5.18.4"]
+version = "5.18.4"
+wandbox-name = "perl-5.18.4"
+[languages.Perl.compilers."perl-5.20.3"]
+version = "5.20.3"
+wandbox-name = "perl-5.20.3"
+[languages.Perl.compilers."perl-5.22.3"]
+version = "5.22.3"
+wandbox-name = "perl-5.22.3"
+[languages.Perl.compilers."perl-5.24.1"]
+version = "5.24.1"
+wandbox-name = "perl-5.24.1"
+[languages.Perl.compilers."perl-5.25.10"]
+version = "5.25.10"
+wandbox-name = "perl-5.25.10"
+[languages.Perl.compilers."perl-5.26.0"]
+version = "5.26.0"
+wandbox-name = "perl-5.26.0"
+[languages.Perl.compilers."perl-5.27.1"]
+version = "5.27.1"
+wandbox-name = "perl-5.27.1"
+[languages.Perl.compilers."perl-5.28.2"]
+version = "5.28.2"
+wandbox-name = "perl-5.28.2"
+[languages.Perl.compilers."perl-5.30.0"]
+version = "5.30.0"
+wandbox-name = "perl-5.30.0"
+[languages.Perl.compilers."perl-5.30.1"]
+version = "5.30.1"
+wandbox-name = "perl-5.30.1"
+default = true
+[languages.Perl.compilers.perl-head]
+wandbox-name = "perl-head"
+
+[languages.Pony]
+aliases = []
+[languages.Pony.compilers."pony-0.11.3"]
+version = "0.11.3"
+wandbox-name = "pony-0.11.3"
+[languages.Pony.compilers."pony-0.14.0"]
+version = "0.14.0"
+wandbox-name = "pony-0.14.0"
+default = true
+[languages.Pony.compilers.pony-head]
+wandbox-name = "pony-head"
+
+[languages.Python]
+aliases = ["py", "gyp", "ipython"]
+[languages.Python.compilers."cpython-2.7-head"]
+wandbox-name = "cpython-2.7-head"
+[languages.Python.compilers."cpython-2.7.13"]
+version = "2.7.13"
+wandbox-name = "cpython-2.7.13"
+[languages.Python.compilers."cpython-2.7.3"]
+version = "2.7.3"
+wandbox-name = "cpython-2.7.3"
+[languages.Python.compilers."cpython-3.4.3"]
+version = "3.4.3"
+wandbox-name = "cpython-3.4.3"
+[languages.Python.compilers."cpython-3.5.0"]
+version = "3.5.0"
+wandbox-name = "cpython-3.5.0"
+[languages.Python.compilers."cpython-3.5.1"]
+version = "3.5.1"
+wandbox-name = "cpython-3.5.1"
+[languages.Python.compilers."cpython-3.6.0"]
+version = "3.6.0"
+wandbox-name = "cpython-3.6.0"
+[languages.Python.compilers."cpython-3.6.1"]
+version = "3.6.1"
+wandbox-name = "cpython-3.6.1"
+[languages.Python.compilers."cpython-3.6.2"]
+version = "3.6.2"
+wandbox-name = "cpython-3.6.2"
+[languages.Python.compilers."cpython-3.7.5"]
+version = "3.7.5"
+wandbox-name = "cpython-3.7.5"
+[languages.Python.compilers."cpython-3.8.0"]
+version = "3.8.0"
+wandbox-name = "cpython-3.8.0"
+default = true
+[languages.Python.compilers.cpython-head]
+wandbox-name = "cpython-head"
+[languages.Python.compilers."pypy-2.1"]
+version = "2.1.0 cpython-2.7.3"
+wandbox-name = "pypy-2.1"
+[languages.Python.compilers."pypy-2.6.1"]
+version = "2.6.1 cpython-2.7.10"
+wandbox-name = "pypy-2.6.1"
+[languages.Python.compilers."pypy-4.0.1"]
+version = "4.0.1 cpython-2.7.10"
+wandbox-name = "pypy-4.0.1"
+[languages.Python.compilers."pypy-5.5.0"]
+version = "5.5.0-alpha0 cpython-3.3.5"
+wandbox-name = "pypy-5.5.0"
+[languages.Python.compilers."pypy-5.6.0"]
+version = "5.6.0 cpython-2.7.12"
+wandbox-name = "pypy-5.6.0"
+[languages.Python.compilers."pypy-5.8.0-2"]
+version = "5.8.0 cpython-2.7.13"
+wandbox-name = "pypy-5.8.0-2"
+[languages.Python.compilers."pypy-5.8.0-3"]
+version = "5.8.0-beta0 cpython-3.5.3"
+wandbox-name = "pypy-5.8.0-3"
+[languages.Python.compilers."pypy-7.2.0-2"]
+version = "7.2.0 cpython-2.7.13"
+wandbox-name = "pypy-7.2.0-2"
+[languages.Python.compilers."pypy-7.2.0-3"]
+version = "7.2.0 cpython-3.6.9"
+wandbox-name = "pypy-7.2.0-3"
+[languages.Python.compilers.pypy-head]
+wandbox-name = "pypy-head"
+
+[languages.R]
+aliases = []
+[languages.R.compilers."r-3.5.1"]
+version = "3.5.1"
+wandbox-name = "r-3.5.1"
+default = true
+[languages.R.compilers.r-head]
+wandbox-name = "r-head"
+
+[languages.Rill]
+aliases = []
+[languages.Rill.compilers.rill-head]
+wandbox-name = "rill-head"
+default = true
+
+[languages.Ruby]
+aliases = ["rb", "gemspec", "podspec", "thor", "irb"]
+[languages.Ruby.compilers."mruby-1.0.0"]
+version = "1.0.0"
+wandbox-name = "mruby-1.0.0"
+[languages.Ruby.compilers."mruby-1.1.0"]
+version = "1.1.0"
+wandbox-name = "mruby-1.1.0"
+[languages.Ruby.compilers."mruby-1.2.0"]
+version = "1.2.0"
+wandbox-name = "mruby-1.2.0"
+[languages.Ruby.compilers."mruby-1.3.0"]
+version = "1.3.0"
+wandbox-name = "mruby-1.3.0"
+[languages.Ruby.compilers."mruby-1.4.0"]
+version = "1.4.0"
+wandbox-name = "mruby-1.4.0"
+[languages.Ruby.compilers."mruby-2.0.0"]
+version = "2.0.0"
+wandbox-name = "mruby-2.0.0"
+[languages.Ruby.compilers."mruby-2.0.1"]
+version = "2.0.1"
+wandbox-name = "mruby-2.0.1"
+[languages.Ruby.compilers.mruby-head]
+wandbox-name = "mruby-head"
+[languages.Ruby.compilers."ruby-1.8.7-p358"]
+version = "1.8.7-p358"
+wandbox-name = "ruby-1.8.7-p358"
+[languages.Ruby.compilers."ruby-1.9.3-p551"]
+version = "1.9.3-p551"
+wandbox-name = "ruby-1.9.3-p551"
+[languages.Ruby.compilers."ruby-2.0.0-p648"]
+version = "2.0.0-p648"
+wandbox-name = "ruby-2.0.0-p648"
+[languages.Ruby.compilers."ruby-2.1.10"]
+version = "2.1.10"
+wandbox-name = "ruby-2.1.10"
+[languages.Ruby.compilers."ruby-2.2.6"]
+version = "2.2.6"
+wandbox-name = "ruby-2.2.6"
+[languages.Ruby.compilers."ruby-2.3.3"]
+version = "2.3.3"
+wandbox-name = "ruby-2.3.3"
+[languages.Ruby.compilers."ruby-2.4.0"]
+version = "2.4.0"
+wandbox-name = "ruby-2.4.0"
+[languages.Ruby.compilers."ruby-2.4.1"]
+version = "2.4.1"
+wandbox-name = "ruby-2.4.1"
+[languages.Ruby.compilers."ruby-2.4.2"]
+version = "2.4.2"
+wandbox-name = "ruby-2.4.2"
+[languages.Ruby.compilers."ruby-2.4.3"]
+version = "2.4.3"
+wandbox-name = "ruby-2.4.3"
+[languages.Ruby.compilers."ruby-2.4.4"]
+version = "2.4.4"
+wandbox-name = "ruby-2.4.4"
+[languages.Ruby.compilers."ruby-2.4.9"]
+version = "2.4.9"
+wandbox-name = "ruby-2.4.9"
+[languages.Ruby.compilers."ruby-2.5.0"]
+version = "2.5.0"
+wandbox-name = "ruby-2.5.0"
+[languages.Ruby.compilers."ruby-2.5.1"]
+version = "2.5.1"
+wandbox-name = "ruby-2.5.1"
+[languages.Ruby.compilers."ruby-2.5.7"]
+version = "2.5.7"
+wandbox-name = "ruby-2.5.7"
+[languages.Ruby.compilers."ruby-2.6.0"]
+version = "2.6.0"
+wandbox-name = "ruby-2.6.0"
+[languages.Ruby.compilers."ruby-2.6.1"]
+version = "2.6.1"
+wandbox-name = "ruby-2.6.1"
+[languages.Ruby.compilers."ruby-2.6.5"]
+version = "2.6.5"
+wandbox-name = "ruby-2.6.5"
+default = true
+[languages.Ruby.compilers."ruby-2.7.0-preview1"]
+version = "2.7.0-preview1"
+wandbox-name = "ruby-2.7.0-preview1"
+[languages.Ruby.compilers.ruby-head]
+wandbox-name = "ruby-head"
+
+[languages.Rust]
+aliases = ["rs"]
+[languages.Rust.compilers."rust-1.15.0"]
+version = "1.15.0"
+wandbox-name = "rust-1.15.0"
+[languages.Rust.compilers."rust-1.18.0"]
+version = "1.18.0"
+wandbox-name = "rust-1.18.0"
+default = true
+[languages.Rust.compilers."rust-1.7.0"]
+version = "1.7.0"
+wandbox-name = "rust-1.7.0"
+[languages.Rust.compilers.rust-head]
+wandbox-name = "rust-head"
+
+[languages.SQL]
+aliases = []
+[languages.SQL.compilers."sqlite-3.17.0"]
+version = "3.17.0"
+wandbox-name = "sqlite-3.17.0"
+[languages.SQL.compilers."sqlite-3.19.3"]
+version = "3.19.3"
+wandbox-name = "sqlite-3.19.3"
+default = true
+[languages.SQL.compilers."sqlite-3.8.1"]
+version = "3.8.1"
+wandbox-name = "sqlite-3.8.1"
+[languages.SQL.compilers.sqlite-head]
+wandbox-name = "sqlite-head"
+
+[languages.Scala]
+aliases = []
+[languages.Scala.compilers."scala-2.11.8"]
+version = "2.11.8"
+wandbox-name = "scala-2.11.8"
+[languages.Scala.compilers."scala-2.11.x"]
+version = "2.11.9-20170208-100906-214a158"
+wandbox-name = "scala-2.11.x"
+[languages.Scala.compilers."scala-2.12.1"]
+version = "2.12.1"
+wandbox-name = "scala-2.12.1"
+[languages.Scala.compilers."scala-2.12.2"]
+version = "2.12.2"
+wandbox-name = "scala-2.12.2"
+[languages.Scala.compilers."scala-2.12.x"]
+version = "2.12.2-20170208-142658-1452183"
+wandbox-name = "scala-2.12.x"
+[languages.Scala.compilers."scala-2.13.x"]
+version = "2.13.3-20200608-132813-2e72f44"
+wandbox-name = "scala-2.13.x"
+default = true
+
+[languages.Swift]
+aliases = []
+[languages.Swift.compilers."swift-2.2"]
+version = "2.2"
+wandbox-name = "swift-2.2"
+[languages.Swift.compilers."swift-2.2.1"]
+version = "2.2.1"
+wandbox-name = "swift-2.2.1"
+[languages.Swift.compilers."swift-3.0"]
+version = "3.0"
+wandbox-name = "swift-3.0"
+[languages.Swift.compilers."swift-3.0.1"]
+version = "3.0.1"
+wandbox-name = "swift-3.0.1"
+[languages.Swift.compilers."swift-3.0.2"]
+version = "3.0.2"
+wandbox-name = "swift-3.0.2"
+[languages.Swift.compilers."swift-3.1.1"]
+version = "3.1.1"
+wandbox-name = "swift-3.1.1"
+[languages.Swift.compilers."swift-4.0"]
+version = "4.0"
+wandbox-name = "swift-4.0"
+[languages.Swift.compilers."swift-5.0.1"]
+version = "5.0.1"
+wandbox-name = "swift-5.0.1"
+default = true
+[languages.Swift.compilers.swift-head]
+wandbox-name = "swift-head"
+
+[languages.TypeScript]
+aliases = ["ts"]
+[languages.TypeScript.compilers."typescript-1.0.0"]
+version = "1.0.0"
+wandbox-name = "typescript-1.0.0"
+[languages.TypeScript.compilers."typescript-1.0.1"]
+version = "1.0.1"
+wandbox-name = "typescript-1.0.1"
+[languages.TypeScript.compilers."typescript-1.3.0"]
+version = "1.3.0"
+wandbox-name = "typescript-1.3.0"
+[languages.TypeScript.compilers."typescript-1.4.1"]
+version = "1.4.1"
+wandbox-name = "typescript-1.4.1"
+[languages.TypeScript.compilers."typescript-1.5.3"]
+version = "1.5.3"
+wandbox-name = "typescript-1.5.3"
+[languages.TypeScript.compilers."typescript-1.6.2"]
+version = "1.6.2"
+wandbox-name = "typescript-1.6.2"
+[languages.TypeScript.compilers."typescript-1.7.3"]
+version = "1.7.3"
+wandbox-name = "typescript-1.7.3"
+[languages.TypeScript.compilers."typescript-1.7.5"]
+version = "1.7.5"
+wandbox-name = "typescript-1.7.5"
+[languages.TypeScript.compilers."typescript-1.8.0"]
+version = "1.8.0"
+wandbox-name = "typescript-1.8.0"
+[languages.TypeScript.compilers."typescript-1.8.2"]
+version = "1.8.2"
+wandbox-name = "typescript-1.8.2"
+[languages.TypeScript.compilers."typescript-1.8.5"]
+version = "1.8.5"
+wandbox-name = "typescript-1.8.5"
+[languages.TypeScript.compilers."typescript-1.8.6"]
+version = "1.8.6"
+wandbox-name = "typescript-1.8.6"
+[languages.TypeScript.compilers."typescript-1.8.7"]
+version = "1.8.7"
+wandbox-name = "typescript-1.8.7"
+[languages.TypeScript.compilers."typescript-1.8.9"]
+version = "1.8.9"
+wandbox-name = "typescript-1.8.9"
+[languages.TypeScript.compilers."typescript-2.0.0"]
+version = "2.0.0"
+wandbox-name = "typescript-2.0.0"
+[languages.TypeScript.compilers."typescript-2.0.2"]
+version = "2.0.2"
+wandbox-name = "typescript-2.0.2"
+[languages.TypeScript.compilers."typescript-2.0.3"]
+version = "2.0.3"
+wandbox-name = "typescript-2.0.3"
+[languages.TypeScript.compilers."typescript-2.0.6"]
+version = "2.0.6"
+wandbox-name = "typescript-2.0.6"
+[languages.TypeScript.compilers."typescript-2.0.7"]
+version = "2.0.7"
+wandbox-name = "typescript-2.0.7"
+[languages.TypeScript.compilers."typescript-2.0.8"]
+version = "2.0.8"
+wandbox-name = "typescript-2.0.8"
+[languages.TypeScript.compilers."typescript-2.0.9"]
+version = "2.0.9"
+wandbox-name = "typescript-2.0.9"
+[languages.TypeScript.compilers."typescript-2.1.1"]
+version = "2.1.1"
+wandbox-name = "typescript-2.1.1"
+[languages.TypeScript.compilers."typescript-2.1.4"]
+version = "2.1.4"
+wandbox-name = "typescript-2.1.4"
+[languages.TypeScript.compilers."typescript-2.1.5"]
+version = "2.1.5"
+wandbox-name = "typescript-2.1.5"
+[languages.TypeScript.compilers."typescript-2.1.6"]
+version = "2.1.6"
+wandbox-name = "typescript-2.1.6"
+[languages.TypeScript.compilers."typescript-2.2.0"]
+version = "2.2.0"
+wandbox-name = "typescript-2.2.0"
+[languages.TypeScript.compilers."typescript-2.2.1"]
+version = "2.2.1"
+wandbox-name = "typescript-2.2.1"
+[languages.TypeScript.compilers."typescript-2.2.2"]
+version = "2.2.2"
+wandbox-name = "typescript-2.2.2"
+[languages.TypeScript.compilers."typescript-2.3.0"]
+version = "2.3.0"
+wandbox-name = "typescript-2.3.0"
+[languages.TypeScript.compilers."typescript-2.3.1"]
+version = "2.3.1"
+wandbox-name = "typescript-2.3.1"
+[languages.TypeScript.compilers."typescript-2.3.2"]
+version = "2.3.2"
+wandbox-name = "typescript-2.3.2"
+[languages.TypeScript.compilers."typescript-2.3.3"]
+version = "2.3.3"
+wandbox-name = "typescript-2.3.3"
+[languages.TypeScript.compilers."typescript-2.3.4"]
+version = "2.3.4"
+wandbox-name = "typescript-2.3.4"
+[languages.TypeScript.compilers."typescript-2.4.0"]
+version = "2.4.0"
+wandbox-name = "typescript-2.4.0"
+[languages.TypeScript.compilers."typescript-2.4.1"]
+version = "2.4.1"
+wandbox-name = "typescript-2.4.1"
+[languages.TypeScript.compilers."typescript-2.4.2"]
+version = "2.4.2"
+wandbox-name = "typescript-2.4.2"
+[languages.TypeScript.compilers."typescript-2.5.0"]
+version = "2.5.0"
+wandbox-name = "typescript-2.5.0"
+[languages.TypeScript.compilers."typescript-2.5.1"]
+version = "2.5.1"
+wandbox-name = "typescript-2.5.1"
+[languages.TypeScript.compilers."typescript-2.5.2"]
+version = "2.5.2"
+wandbox-name = "typescript-2.5.2"
+[languages.TypeScript.compilers."typescript-2.5.3"]
+version = "2.5.3"
+wandbox-name = "typescript-2.5.3"
+[languages.TypeScript.compilers."typescript-2.6.1"]
+version = "2.6.1"
+wandbox-name = "typescript-2.6.1"
+[languages.TypeScript.compilers."typescript-2.6.2"]
+version = "2.6.2"
+wandbox-name = "typescript-2.6.2"
+[languages.TypeScript.compilers."typescript-2.7.1"]
+version = "2.7.1"
+wandbox-name = "typescript-2.7.1"
+[languages.TypeScript.compilers."typescript-2.7.2"]
+version = "2.7.2"
+wandbox-name = "typescript-2.7.2"
+[languages.TypeScript.compilers."typescript-2.8.1"]
+version = "2.8.1"
+wandbox-name = "typescript-2.8.1"
+[languages.TypeScript.compilers."typescript-2.8.3"]
+version = "2.8.3"
+wandbox-name = "typescript-2.8.3"
+[languages.TypeScript.compilers."typescript-2.8.4"]
+version = "2.8.4"
+wandbox-name = "typescript-2.8.4"
+[languages.TypeScript.compilers."typescript-2.9.1"]
+version = "2.9.1"
+wandbox-name = "typescript-2.9.1"
+[languages.TypeScript.compilers."typescript-2.9.2"]
+version = "2.9.2"
+wandbox-name = "typescript-2.9.2"
+[languages.TypeScript.compilers."typescript-3.0.1"]
+version = "3.0.1"
+wandbox-name = "typescript-3.0.1"
+[languages.TypeScript.compilers."typescript-3.0.3"]
+version = "3.0.3"
+wandbox-name = "typescript-3.0.3"
+[languages.TypeScript.compilers."typescript-3.1.1"]
+version = "3.1.1"
+wandbox-name = "typescript-3.1.1"
+[languages.TypeScript.compilers."typescript-3.1.2"]
+version = "3.1.2"
+wandbox-name = "typescript-3.1.2"
+[languages.TypeScript.compilers."typescript-3.1.3"]
+version = "3.1.3"
+wandbox-name = "typescript-3.1.3"
+[languages.TypeScript.compilers."typescript-3.1.4"]
+version = "3.1.4"
+wandbox-name = "typescript-3.1.4"
+[languages.TypeScript.compilers."typescript-3.1.5"]
+version = "3.1.5"
+wandbox-name = "typescript-3.1.5"
+[languages.TypeScript.compilers."typescript-3.1.6"]
+version = "3.1.6"
+wandbox-name = "typescript-3.1.6"
+[languages.TypeScript.compilers."typescript-3.2.1"]
+version = "3.2.1"
+wandbox-name = "typescript-3.2.1"
+[languages.TypeScript.compilers."typescript-3.2.2"]
+version = "3.2.2"
+wandbox-name = "typescript-3.2.2"
+[languages.TypeScript.compilers."typescript-3.2.4"]
+version = "3.2.4"
+wandbox-name = "typescript-3.2.4"
+[languages.TypeScript.compilers."typescript-3.3.1"]
+version = "3.3.1"
+wandbox-name = "typescript-3.3.1"
+[languages.TypeScript.compilers."typescript-3.3.3"]
+version = "3.3.3"
+wandbox-name = "typescript-3.3.3"
+[languages.TypeScript.compilers."typescript-3.4.1"]
+version = "3.4.1"
+wandbox-name = "typescript-3.4.1"
+[languages.TypeScript.compilers."typescript-3.4.2"]
+version = "3.4.2"
+wandbox-name = "typescript-3.4.2"
+[languages.TypeScript.compilers."typescript-3.4.3"]
+version = "3.4.3"
+wandbox-name = "typescript-3.4.3"
+[languages.TypeScript.compilers."typescript-3.4.4"]
+version = "3.4.4"
+wandbox-name = "typescript-3.4.4"
+[languages.TypeScript.compilers."typescript-3.4.5"]
+version = "3.4.5"
+wandbox-name = "typescript-3.4.5"
+[languages.TypeScript.compilers."typescript-3.5.1"]
+version = "3.5.1"
+wandbox-name = "typescript-3.5.1"
+default = true
+
+[languages."Vim script"]
+aliases = ["vim"]
+[languages."Vim script".compilers."vim-7.4.1714"]
+version = "7.4.1714"
+wandbox-name = "vim-7.4.1714"
+[languages."Vim script".compilers."vim-7.4.2367"]
+version = "7.4.2367"
+wandbox-name = "vim-7.4.2367"
+[languages."Vim script".compilers."vim-7.4.729"]
+version = "7.4.729"
+wandbox-name = "vim-7.4.729"
+[languages."Vim script".compilers."vim-8.0.0354"]
+version = "8.0.0354"
+wandbox-name = "vim-8.0.0354"
+[languages."Vim script".compilers."vim-8.0.0671"]
+version = "8.0.0671"
+wandbox-name = "vim-8.0.0671"
+default = true
+[languages."Vim script".compilers.vim-head]
+wandbox-name = "vim-head"

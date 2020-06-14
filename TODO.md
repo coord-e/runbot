@@ -1,5 +1,4 @@
-- [ ] stdin
-- [ ] setting persistence
+- [ ] redis pass
 - [ ] templates
 - [ ] add more backends
   - [ ] local-wandbox
