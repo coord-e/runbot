@@ -40,10 +40,6 @@ impl CommandContext {
         Ok(())
     }
 
-    pub fn unhandled(&self, message: impl AsRef<str>) -> Result<()> {
-        self.say(format!("わからん、{}", message.as_ref()))
-    }
-
     pub fn react(&self, reaction: ReactionType) -> Result<()> {
         self.message.react(&self.ctx.http, reaction)?;
         Ok(())

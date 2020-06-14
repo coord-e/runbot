@@ -2,6 +2,8 @@ use std::str::{pattern::Pattern, FromStr};
 
 use runbot::model::code::Code;
 
+use err_derive::Error;
+
 #[derive(Clone, Debug)]
 pub struct CodeBlock {
     language: Option<String>,
@@ -78,9 +80,13 @@ pub struct CodeInput {
     stdin: Option<String>,
 }
 
+#[derive(Debug, Error)]
 pub enum ParseCodeInputError {
+    #[error(display = "no code block found in the input")]
     NoCodeBlockFound,
+    #[error(display = "only stdin block found in the input")]
     OnlyStdinFound,
+    #[error(display = "too many code blocks in the input")]
     TooManyCodeBlocks,
 }
 

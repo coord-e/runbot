@@ -76,7 +76,7 @@ impl RunbotHandler {
                 lang.as_ref().parse().into_ok(),
                 compiler.as_ref().parse().into_ok(),
             ),
-            _ => return ctx.unhandled("引数をちゃんと指定してね"),
+            _ => return Err(Error::InvalidNumberOfArguments),
         };
 
         action::remap_language(ctx, ctx.is_global, lang, compiler)?;
@@ -92,7 +92,7 @@ impl RunbotHandler {
     fn command_list(&self, ctx: &CommandContext, commandline: &[impl AsRef<str>]) -> Result<()> {
         let language = match commandline {
             [x] => x.as_ref().parse().into_ok(),
-            _ => return ctx.unhandled("言語名をちゃんと指定してね"),
+            _ => return Err(Error::InvalidNumberOfArguments),
         };
 
         let compilers = action::list_compilers(ctx, language)?;
@@ -106,10 +106,7 @@ impl RunbotHandler {
         body: &str,
         save: bool,
     ) -> Result<()> {
-        let input: CodeInput = match body.parse() {
-            Err(_) => return ctx.unhandled("うーん"),
-            Ok(x) => x,
-        };
+        let input: CodeInput = body.parse()?;
 
         let (compiler_spec, options) = match commandline.split_first() {
             Some((spec, [])) => (Some(spec.as_ref().parse().into_ok()), None),
@@ -161,14 +158,11 @@ impl RunbotHandler {
             line
         };
 
-        let words = match shell_words::split(line) {
-            Ok(x) => x,
-            Err(_) => return ctx.unhandled("うーん？"),
-        };
+        let words = shell_words::split(line)?;
 
         let (command, commandline) = match words.split_first() {
             Some(x) => x,
-            None => return ctx.unhandled("引数が足りないにえ"),
+            None => return Err(Error::InvalidNumberOfArguments),
         };
 
         match command.as_ref() {
@@ -183,7 +177,7 @@ impl RunbotHandler {
             "list" => self.command_list(ctx, commandline),
             "run" => self.command_run(ctx, commandline, body, false),
             "run-save" => self.command_run(ctx, commandline, body, true),
-            _ => ctx.unhandled("知らないコマンドニャンね"),
+            _ => Err(Error::UnknownCommand(command.to_string())),
         }
     }
 
