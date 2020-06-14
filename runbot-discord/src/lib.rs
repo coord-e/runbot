@@ -9,4 +9,3 @@ pub mod compile_result;
 pub mod config_file;
 pub mod error;
 pub mod table;
-pub mod type_key;

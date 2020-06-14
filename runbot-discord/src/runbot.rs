@@ -10,9 +10,9 @@ use runbot::model::guild_id::GuildID;
 
 use runbot_discord::code_input::CodeInput;
 use runbot_discord::command_context::CommandContext;
+use runbot_discord::config_file;
 use runbot_discord::error::{Error, Result};
 use runbot_discord::table::Table;
-use runbot_discord::{config_file, type_key};
 
 use itertools::Itertools;
 use parking_lot::Mutex;
@@ -20,7 +20,16 @@ use serenity::model::channel::Message;
 use serenity::model::channel::ReactionType;
 use serenity::prelude::*;
 
-struct RunbotHandler(runbot::Config);
+pub struct ConnectionKey;
+
+impl TypeMapKey for ConnectionKey {
+    type Value = Arc<Mutex<redis::Connection>>;
+}
+
+struct RunbotHandler {
+    table: runbot::Config,
+    wandbox_client: wandbox::blocking::Client,
+}
 
 impl RunbotHandler {
     fn command_help(&self, ctx: &CommandContext) -> Result<()> {
@@ -45,18 +54,18 @@ impl RunbotHandler {
     }
 
     fn command_show_setting(&self, ctx: &CommandContext) -> Result<()> {
-        let result = action::dump_setting(&ctx.action_ctx)?;
+        let result = action::dump_setting(ctx)?;
         ctx.print_code_block(Table(result).to_string())
     }
 
     fn command_auto(&self, ctx: &CommandContext, state: bool) -> Result<()> {
-        action::set_auto(&ctx.action_ctx, ctx.is_global, state)?;
+        action::set_auto(ctx, ctx.is_global, state)?;
 
         ctx.react(ReactionType::Unicode("✅".to_string()))
     }
 
     fn command_auto_save(&self, ctx: &CommandContext, state: bool) -> Result<()> {
-        action::set_auto_save(&ctx.action_ctx, ctx.is_global, state)?;
+        action::set_auto_save(ctx, ctx.is_global, state)?;
 
         ctx.react(ReactionType::Unicode("✅".to_string()))
     }
@@ -70,13 +79,13 @@ impl RunbotHandler {
             _ => return ctx.unhandled("引数をちゃんと指定してね"),
         };
 
-        action::remap_language(&ctx.action_ctx, ctx.is_global, lang, compiler)?;
+        action::remap_language(ctx, ctx.is_global, lang, compiler)?;
 
         ctx.react(ReactionType::Unicode("✅".to_string()))
     }
 
     fn command_list_languages(&self, ctx: &CommandContext) -> Result<()> {
-        let languages = action::list_languages(&ctx.action_ctx);
+        let languages = action::list_languages(ctx);
         ctx.print_code_block(Table(languages).to_string())
     }
 
@@ -86,7 +95,7 @@ impl RunbotHandler {
             _ => return ctx.unhandled("言語名をちゃんと指定してね"),
         };
 
-        let compilers = action::list_compilers(&ctx.action_ctx, language)?;
+        let compilers = action::list_compilers(ctx, language)?;
         ctx.print_code_block(Table(compilers).to_string())
     }
 
@@ -112,7 +121,7 @@ impl RunbotHandler {
         };
 
         let result = action::run(
-            &ctx.action_ctx,
+            ctx,
             compiler_spec,
             input.clone().into_code(),
             options,
@@ -129,11 +138,7 @@ impl RunbotHandler {
             Ok(x) => x,
         };
 
-        let result = action::run_implicit(
-            &ctx.action_ctx,
-            input.clone().into_code(),
-            input.stdin().cloned(),
-        )?;
+        let result = action::run_implicit(ctx, input.clone().into_code(), input.stdin().cloned())?;
 
         use action::run_implicit::Output;
         match result {
@@ -208,7 +213,16 @@ impl EventHandler for RunbotHandler {
         let channel_id = ChannelID::from_u64(*msg.channel_id.as_u64());
         let msg_content = msg.content.clone();
 
-        let mut command_ctx = CommandContext::new(ctx, msg, guild_id, channel_id, self.0.clone());
+        let redis_conn = ctx.data.read().get::<ConnectionKey>().unwrap().clone();
+        let runbot_ctx = runbot::Context::new(
+            guild_id,
+            channel_id,
+            self.wandbox_client.clone(),
+            redis_conn,
+            self.table.clone(),
+        );
+
+        let mut command_ctx = CommandContext::new(ctx, msg, runbot_ctx);
         if let Err(e) = self.handle(&mut command_ctx, &msg_content) {
             let _ = match &e {
                 Error::Runbot(runbot::Error::UnknownLanguageName(name)) => {
@@ -243,16 +257,25 @@ fn main() -> result::Result<(), Box<dyn std::error::Error>> {
     let token = env::var("DISCORD_TOKEN")?;
     let redis_uri = env::var("REDIS_URI")?;
     let config_path = env::var("CONFIG_PATH")?;
+    let wandbox_home = env::var("WANDBOX_HOME")?;
 
-    let config = config_file::load_config(config_path)?;
-    let mut client = Client::new(&token, RunbotHandler(config))?;
+    let table = config_file::load_config(config_path)?;
+    let wandbox_client = wandbox::blocking::Client::new(&wandbox_home)?;
+
+    let mut client = Client::new(
+        &token,
+        RunbotHandler {
+            table,
+            wandbox_client,
+        },
+    )?;
 
     let redis_client = redis::Client::open(redis_uri)?;
     let redis_conn = Arc::new(Mutex::new(redis_client.get_connection()?));
 
     {
         let mut data = client.data.write();
-        data.insert::<type_key::ConnectionKey>(redis_conn);
+        data.insert::<ConnectionKey>(redis_conn);
     }
 
     client.start()?;

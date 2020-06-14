@@ -3,6 +3,7 @@ use crate::Result;
 
 use url::Url;
 
+#[derive(Debug, Clone)]
 pub struct Client {
     inner: reqwest::blocking::Client,
     api_home: Url,

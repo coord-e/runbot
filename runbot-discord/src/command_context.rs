@@ -1,12 +1,8 @@
 use std::io::Write;
-use std::str;
+use std::{ops, str};
 
 use super::compile_result::CompileResult;
 use super::error::Result;
-use super::type_key::ConnectionKey;
-
-use runbot::model::channel_id::ChannelID;
-use runbot::model::guild_id::GuildID;
 
 use itertools::Itertools;
 use serenity::client::Context;
@@ -16,26 +12,23 @@ pub struct CommandContext {
     pub ctx: Context,
     pub message: Message,
     pub is_global: bool,
-    pub action_ctx: runbot::ActionContext,
+    pub runbot_ctx: runbot::Context,
+}
+
+impl ops::Deref for CommandContext {
+    type Target = runbot::Context;
+    fn deref(&self) -> &runbot::Context {
+        &self.runbot_ctx
+    }
 }
 
 impl CommandContext {
-    pub fn new(
-        ctx: Context,
-        message: Message,
-        guild_id: GuildID,
-        channel_id: ChannelID,
-        config: runbot::Config,
-    ) -> CommandContext {
-        let conn = ctx.data.read().get::<ConnectionKey>().unwrap().clone();
-        let action_ctx =
-            runbot::ActionContext::new(runbot::Setting::new(conn), config, guild_id, channel_id);
-
+    pub fn new(ctx: Context, message: Message, runbot_ctx: runbot::Context) -> CommandContext {
         CommandContext {
             ctx,
             message,
             is_global: false,
-            action_ctx,
+            runbot_ctx,
         }
     }
 

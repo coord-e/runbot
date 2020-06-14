@@ -23,21 +23,18 @@ impl Context {
     pub fn new(
         guild_id: GuildID,
         channel_id: ChannelID,
-        wandbox_api_home: &str,
-        redis_uri: &str,
+        wandbox_client: wandbox::blocking::Client,
+        redis_connection: Arc<Mutex<redis::Connection>>,
         table: Config,
-    ) -> Result<Context> {
-        let redis_client = redis::Client::open(redis_uri)?;
-        let redis_conn = Arc::new(Mutex::new(redis_client.get_connection()?));
-        let setting = Setting::new(redis_conn);
-        let wandbox = wandbox::blocking::Client::new(wandbox_api_home)?;
-        Ok(Context {
+    ) -> Context {
+        let setting = Setting::new(redis_connection);
+        Context {
             setting,
             config: table,
-            wandbox,
+            wandbox: wandbox_client,
             guild_id,
             channel_id,
-        })
+        }
     }
 
     pub(crate) fn resolve_compiler_spec(&self, spec: &CompilerSpec) -> Result<&Compiler> {
