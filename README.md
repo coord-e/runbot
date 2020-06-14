@@ -7,6 +7,13 @@ Runbot runs your code on Discord using [Wandbox](https://wandbox.org) API.
 
 ![screenshot](https://i.imgur.com/iPi9gZD.png)
 
+## Getting Started
+
+```shell
+$ export DISCORD_TOKEN=<DISCORD BOT TOKEN>
+$ docker-compose up -d
+```
+
 ## License
 
 Licensed under either of
