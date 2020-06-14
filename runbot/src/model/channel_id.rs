@@ -6,7 +6,7 @@ impl ChannelID {
         ChannelID(id)
     }
 
-    pub fn as_u64(&self) -> u64 {
+    pub fn as_u64(self) -> u64 {
         self.0
     }
 }

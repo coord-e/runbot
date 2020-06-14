@@ -9,7 +9,7 @@ use ref_cast::RefCast;
 pub struct CompilerID(u64);
 
 impl CompilerID {
-    pub fn as_u64(&self) -> u64 {
+    pub fn as_u64(self) -> u64 {
         self.0
     }
 
@@ -53,6 +53,7 @@ impl CompilerName {
         CompilerName(s)
     }
 
+    #[allow(clippy::ptr_arg)]
     pub fn from_string_ref(s: &String) -> &CompilerName {
         Self::ref_cast(s)
     }

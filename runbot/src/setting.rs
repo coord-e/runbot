@@ -28,7 +28,7 @@ enum Field {
 }
 
 impl Field {
-    fn name(&self) -> &'static str {
+    fn name(self) -> &'static str {
         match self {
             Field::Auto => "auto",
             Field::AutoSave => "auto_save",

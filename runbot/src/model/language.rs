@@ -11,7 +11,7 @@ use ref_cast::RefCast;
 pub struct LanguageID(u64);
 
 impl LanguageID {
-    pub fn as_u64(&self) -> u64 {
+    pub fn as_u64(self) -> u64 {
         self.0
     }
 
@@ -71,6 +71,7 @@ impl LanguageName {
         LanguageName(s)
     }
 
+    #[allow(clippy::ptr_arg)]
     pub fn from_string_ref(s: &String) -> &LanguageName {
         Self::ref_cast(s)
     }

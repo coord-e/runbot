@@ -1,10 +1,11 @@
 use std::{iter::FromIterator, slice, vec};
 
+#[derive(Default, Debug, Clone)]
 pub struct CompilerOptions(Vec<String>);
 
 impl CompilerOptions {
     pub fn new() -> CompilerOptions {
-        CompilerOptions(Vec::new())
+        CompilerOptions::default()
     }
 }
 
