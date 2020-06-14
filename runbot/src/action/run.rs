@@ -1,7 +1,7 @@
 use crate::model::code::Code;
 use crate::model::compiler_options::CompilerOptions;
 use crate::model::compiler_spec::CompilerSpec;
-use crate::{ActionContext, Error, Result};
+use crate::{Context, Error, Result};
 
 use itertools::Itertools;
 
@@ -15,7 +15,7 @@ pub struct Output {
 
 // Notice that both `compiler_spec` and `code` can specify the compiler to use.
 pub fn run(
-    ctx: &ActionContext,
+    ctx: &Context,
     compiler_spec: Option<CompilerSpec>,
     code: Code,
     options: Option<CompilerOptions>,
@@ -30,7 +30,7 @@ pub fn run(
         return Err(Error::NoCompilerSpecified);
     };
 
-    let req = wandbox::compile::Request {
+    let req = wandbox::api::compile::Request {
         compiler: compiler.wandbox_name().clone(),
         code: code.text().clone(),
         codes: Vec::new(),
@@ -41,7 +41,7 @@ pub fn run(
         save,
     };
 
-    let res = wandbox::compile(&req)?;
+    let res = ctx.wandbox.compile(&req)?;
     Ok(Output {
         status: res.status.map(|o| o.parse().unwrap()),
         signal: res.signal,

@@ -1,10 +1,10 @@
 use crate::model::compiler::CompilerName;
 use crate::model::language::LanguageName;
 use crate::setting::Scope;
-use crate::{ActionContext, Error, Result};
+use crate::{Context, Error, Result};
 
 pub fn remap_language(
-    ctx: &ActionContext,
+    ctx: &Context,
     is_global: bool,
     language_name: LanguageName,
     compiler_name: CompilerName,
@@ -29,7 +29,7 @@ pub fn remap_language(
     let scope = if is_global {
         Scope::Guild
     } else {
-        Scope::Channel(ctx.channel_id())
+        Scope::Channel(ctx.channel_id)
     };
 
     ctx.setting

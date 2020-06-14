@@ -21,7 +21,7 @@ pub enum Error {
     #[error(display = "{} is not a compiler for {}", _0, _1)]
     RemapMismatch(CompilerName, LanguageName),
     #[error(display = "network error: {}", _0)]
-    Network(#[error(source)] reqwest::Error),
+    Wandbox(#[error(source)] wandbox::Error),
     #[error(display = "database error: {}", _0)]
     Database(#[error(source)] redis::RedisError),
 }

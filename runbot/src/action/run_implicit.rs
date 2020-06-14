@@ -1,5 +1,5 @@
 use crate::model::code::Code;
-use crate::{ActionContext, Error, Result};
+use crate::{Context, Error, Result};
 
 pub enum Output {
     NoRun,
@@ -12,7 +12,7 @@ pub enum Output {
     },
 }
 
-pub fn run_implicit(ctx: &ActionContext, code: Code, stdin: Option<String>) -> Result<Output> {
+pub fn run_implicit(ctx: &Context, code: Code, stdin: Option<String>) -> Result<Output> {
     if !ctx.is_auto()? {
         return Ok(Output::NoRun);
     }
@@ -25,7 +25,7 @@ pub fn run_implicit(ctx: &ActionContext, code: Code, stdin: Option<String>) -> R
         return Err(Error::NoCompilerSpecified);
     };
 
-    let req = wandbox::compile::Request {
+    let req = wandbox::api::compile::Request {
         compiler: compiler.wandbox_name().clone(),
         code: code.text().clone(),
         codes: Vec::new(),
@@ -36,7 +36,7 @@ pub fn run_implicit(ctx: &ActionContext, code: Code, stdin: Option<String>) -> R
         save,
     };
 
-    let res = wandbox::compile(&req)?;
+    let res = ctx.wandbox.compile(&req)?;
     Ok(Output::Run {
         status: res.status.map(|o| o.parse().unwrap()),
         signal: res.signal,

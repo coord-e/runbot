@@ -10,7 +10,6 @@ name = "runbot"
 
 [dependencies]
 itertools = "0.9.0"
-reqwest = "0.10.6"
 wandbox = { path = "../wandbox" }
 redis = "0.16.0"
 err-derive = "0.2.4"

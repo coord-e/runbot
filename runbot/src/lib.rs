@@ -1,12 +1,12 @@
 #![feature(never_type)]
 
 pub mod action;
-pub mod config;
-pub mod error;
+mod config;
+mod context;
+mod error;
 pub mod model;
-pub mod setting;
+mod setting;
 
-pub use action::ActionContext;
 pub use config::Config;
+pub use context::Context;
 pub use error::{Error, Result};
-pub use setting::Setting;

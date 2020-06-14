@@ -1241,7 +1241,6 @@ dependencies = [
  "parking_lot 0.10.2",
  "redis",
  "ref-cast",
- "reqwest",
  "wandbox",
 ]
 
