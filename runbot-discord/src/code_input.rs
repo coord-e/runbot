@@ -67,10 +67,7 @@ impl CodeBlock {
     }
 
     fn is_stdin(&self) -> bool {
-        match self.language.as_deref() {
-            Some("stdin") => true,
-            _ => false,
-        }
+        matches!(self.language.as_deref(), Some("stdin"))
     }
 }
 
