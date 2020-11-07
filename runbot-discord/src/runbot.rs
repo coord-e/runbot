@@ -1,7 +1,10 @@
 #![feature(unwrap_infallible)]
 
+use std::fs::File;
+use std::io::Read;
+use std::path::PathBuf;
+use std::result;
 use std::sync::Arc;
-use std::{env, result};
 
 use runbot::action;
 use runbot::model::channel_id::ChannelID;
@@ -17,6 +20,7 @@ use parking_lot::Mutex;
 use serenity::model::channel::Message;
 use serenity::model::channel::ReactionType;
 use serenity::prelude::*;
+use structopt::{clap::ArgGroup, StructOpt};
 
 pub struct ConnectionKey;
 
@@ -222,24 +226,51 @@ impl EventHandler for RunbotHandler {
     }
 }
 
-fn main() -> result::Result<(), Box<dyn std::error::Error>> {
-    let token = env::var("DISCORD_TOKEN")?;
-    let redis_uri = env::var("REDIS_URI")?;
-    let table_path = env::var("TABLE_FILE_PATH")?;
-    let wandbox_home = env::var("WANDBOX_HOME")?;
+#[derive(StructOpt)]
+#[structopt(group = ArgGroup::with_name("tokens").required(true).multiple(false))]
+struct Opt {
+    #[structopt(long, env = "DISCORD_TOKEN", hide_env_values = true, group = "tokens")]
+    token: Option<String>,
+    #[structopt(long, env = "DISCORD_TOKEN_FILE", parse(from_os_str), group = "tokens")]
+    token_file: Option<PathBuf>,
+    #[structopt(short, long, env = "REDIS_URI")]
+    redis_uri: String,
+    #[structopt(short, long, env = "TABLE_FILE_PATH", parse(from_os_str))]
+    table_path: PathBuf,
+    #[structopt(
+        short,
+        long,
+        env = "WANDBOX_HOME",
+        default_value = "https://wandbox.org/api/"
+    )]
+    wandbox_home: String,
+}
 
-    let table = table_loader::load_table(table_path)?;
-    let wandbox_client = wandbox::blocking::Client::new(&wandbox_home)?;
+fn main() -> result::Result<(), Box<dyn std::error::Error>> {
+    let opt = Opt::from_args();
+
+    let token = if let Some(token) = opt.token {
+        token
+    } else {
+        let mut file = File::open(opt.token_file.unwrap())?;
+        let mut content = String::new();
+        file.read_to_string(&mut content)?;
+        content
+    };
+    let token = token.trim();
+
+    let table = table_loader::load_table(opt.table_path)?;
+    let wandbox_client = wandbox::blocking::Client::new(&opt.wandbox_home)?;
 
     let mut client = Client::new(
-        &token,
+        token,
         RunbotHandler {
             table,
             wandbox_client,
         },
     )?;
 
-    let redis_client = redis::Client::open(redis_uri)?;
+    let redis_client = redis::Client::open(opt.redis_uri)?;
     let redis_conn = Arc::new(Mutex::new(redis_client.get_connection()?));
 
     {
