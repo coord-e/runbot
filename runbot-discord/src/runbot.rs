@@ -31,6 +31,7 @@ impl TypeMapKey for ConnectionKey {
 struct RunbotHandler {
     table: runbot::Table,
     wandbox_client: wandbox::blocking::Client,
+    redis_prefix: String,
 }
 
 impl RunbotHandler {
@@ -215,6 +216,7 @@ impl EventHandler for RunbotHandler {
             channel_id,
             self.wandbox_client.clone(),
             redis_conn,
+            self.redis_prefix.clone(),
             self.table.clone(),
         );
 
@@ -243,6 +245,8 @@ struct Opt {
         group = "tokens"
     )]
     token_file: Option<PathBuf>,
+    #[structopt(short, long, env = "RUNBOT_REDIS_PREFIX", default_value = "runbot")]
+    redis_prefix: String,
     #[structopt(short, long, env = "RUNBOT_REDIS_URI")]
     redis_uri: String,
     #[structopt(short, long, env = "RUNBOT_TABLE_FILE_PATH", parse(from_os_str))]
@@ -277,6 +281,7 @@ fn main() -> result::Result<(), Box<dyn std::error::Error>> {
         RunbotHandler {
             table,
             wandbox_client,
+            redis_prefix: opt.redis_prefix,
         },
     )?;
 

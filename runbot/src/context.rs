@@ -25,9 +25,10 @@ impl Context {
         channel_id: ChannelID,
         wandbox_client: wandbox::blocking::Client,
         redis_connection: Arc<Mutex<redis::Connection>>,
+        redis_prefix: String,
         table: Table,
     ) -> Context {
-        let setting = Setting::new(redis_connection);
+        let setting = Setting::new(redis_connection, redis_prefix);
         Context {
             setting,
             table,

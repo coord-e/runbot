@@ -12,6 +12,7 @@ use redis::Commands;
 // Data Access Object for Runbot settings
 pub struct Setting {
     conn: Arc<Mutex<redis::Connection>>,
+    prefix: String,
 }
 
 #[derive(Debug, Clone, Copy)]
@@ -38,63 +39,86 @@ impl Field {
 }
 
 #[derive(Debug, Clone)]
-enum Key {
+enum Key<'a> {
     ChannelKey {
+        prefix: &'a str,
         guild_id: GuildID,
         channel_id: ChannelID,
         field: Field,
     },
     DefaultKey {
+        prefix: &'a str,
         guild_id: GuildID,
         field: Field,
     },
 }
 
-impl redis::ToRedisArgs for Key {
+impl redis::ToRedisArgs for Key<'_> {
     fn write_redis_args<W: ?Sized>(&self, out: &mut W)
     where
         W: redis::RedisWrite,
     {
         let key_name = match self {
             Key::ChannelKey {
+                prefix,
                 guild_id,
                 channel_id,
                 field,
             } => format!(
-                "channel:{}:{}:{}",
+                "{}:channel:{}:{}:{}",
+                prefix,
                 guild_id.as_u64(),
                 channel_id.as_u64(),
                 field.name()
             ),
-            Key::DefaultKey { guild_id, field } => {
-                format!("channel:{}:default:{}", guild_id.as_u64(), field.name())
-            }
+            Key::DefaultKey {
+                prefix,
+                guild_id,
+                field,
+            } => format!(
+                "{}:channel:{}:default:{}",
+                prefix,
+                guild_id.as_u64(),
+                field.name()
+            ),
         };
 
         key_name.write_redis_args(out)
     }
 }
 
-enum ScanPattern {
-    AllChannels(GuildID, Field),
+enum ScanPattern<'a> {
+    AllChannels {
+        prefix: &'a str,
+        guild_id: GuildID,
+        field: Field,
+    },
 }
 
-impl redis::ToRedisArgs for ScanPattern {
+impl redis::ToRedisArgs for ScanPattern<'_> {
     fn write_redis_args<W: ?Sized>(&self, out: &mut W)
     where
         W: redis::RedisWrite,
     {
         match self {
-            ScanPattern::AllChannels(guild_id, field) => {
-                format!("channel:{}:*:{}", guild_id.as_u64(), field.name()).write_redis_args(out)
-            }
+            ScanPattern::AllChannels {
+                prefix,
+                guild_id,
+                field,
+            } => format!(
+                "{}:channel:{}:*:{}",
+                prefix,
+                guild_id.as_u64(),
+                field.name()
+            )
+            .write_redis_args(out),
         }
     }
 }
 
 impl Setting {
-    pub fn new(conn: Arc<Mutex<redis::Connection>>) -> Setting {
-        Setting { conn }
+    pub fn new(conn: Arc<Mutex<redis::Connection>>, prefix: String) -> Setting {
+        Setting { conn, prefix }
     }
 
     fn get_key(
@@ -104,11 +128,16 @@ impl Setting {
         field: Field,
     ) -> Result<Option<Key>> {
         let channel_key = Key::ChannelKey {
+            prefix: &self.prefix,
             guild_id,
             channel_id,
             field,
         };
-        let default_key = Key::DefaultKey { guild_id, field };
+        let default_key = Key::DefaultKey {
+            prefix: &self.prefix,
+            guild_id,
+            field,
+        };
 
         let key = if self.conn.lock().exists(channel_key.clone())? {
             Some(channel_key)
@@ -171,6 +200,7 @@ impl Setting {
         match scope {
             Scope::Channel(channel_id) => {
                 let key = Key::ChannelKey {
+                    prefix: &self.prefix,
                     guild_id,
                     channel_id,
                     field,
@@ -181,14 +211,22 @@ impl Setting {
                 let mut conn = self.conn.lock();
 
                 let keys: Vec<Vec<u8>> = conn
-                    .scan_match::<_, Vec<u8>>(ScanPattern::AllChannels(guild_id, field))?
+                    .scan_match::<_, Vec<u8>>(ScanPattern::AllChannels {
+                        prefix: &self.prefix,
+                        guild_id,
+                        field,
+                    })?
                     .collect();
 
                 for k in keys {
                     conn.set(k, value)?;
                 }
 
-                let default_key = Key::DefaultKey { guild_id, field };
+                let default_key = Key::DefaultKey {
+                    prefix: &self.prefix,
+                    guild_id,
+                    field,
+                };
                 conn.set(default_key, value)?;
             }
         }
@@ -211,6 +249,7 @@ impl Setting {
         match scope {
             Scope::Channel(channel_id) => {
                 let key = Key::ChannelKey {
+                    prefix: &self.prefix,
                     guild_id,
                     channel_id,
                     field,
@@ -221,14 +260,22 @@ impl Setting {
                 let mut conn = self.conn.lock();
 
                 let keys: Vec<Vec<u8>> = conn
-                    .scan_match::<_, Vec<u8>>(ScanPattern::AllChannels(guild_id, field))?
+                    .scan_match::<_, Vec<u8>>(ScanPattern::AllChannels {
+                        prefix: &self.prefix,
+                        guild_id,
+                        field,
+                    })?
                     .collect();
 
                 for k in keys {
                     conn.hset(k, hash_key, hash_value)?;
                 }
 
-                let default_key = Key::DefaultKey { guild_id, field };
+                let default_key = Key::DefaultKey {
+                    prefix: &self.prefix,
+                    guild_id,
+                    field,
+                };
                 conn.hset(default_key, hash_key, hash_value)?;
             }
         }
