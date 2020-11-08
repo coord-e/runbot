@@ -1,4 +1,4 @@
-export DISCORD_TOKEN=<TOKEN>
-export REDIS_URI=redis://localhost:6379/
-export TABLE_FILE_PATH=./table.toml
-export WANDBOX_HOME=https://wandbox.org/api/
+export RUNBOT_DISCORD_TOKEN=<TOKEN>
+export RUNBOT_REDIS_URI=redis://localhost:6379/
+export RUNBOT_TABLE_FILE_PATH=./table.toml
+export RUNBOT_WANDBOX_HOME=https://wandbox.org/api/

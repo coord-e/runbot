@@ -229,18 +229,28 @@ impl EventHandler for RunbotHandler {
 #[derive(StructOpt)]
 #[structopt(group = ArgGroup::with_name("tokens").required(true).multiple(false))]
 struct Opt {
-    #[structopt(long, env = "DISCORD_TOKEN", hide_env_values = true, group = "tokens")]
+    #[structopt(
+        long,
+        env = "RUNBOT_DISCORD_TOKEN",
+        hide_env_values = true,
+        group = "tokens"
+    )]
     token: Option<String>,
-    #[structopt(long, env = "DISCORD_TOKEN_FILE", parse(from_os_str), group = "tokens")]
+    #[structopt(
+        long,
+        env = "RUNBOT_DISCORD_TOKEN_FILE",
+        parse(from_os_str),
+        group = "tokens"
+    )]
     token_file: Option<PathBuf>,
-    #[structopt(short, long, env = "REDIS_URI")]
+    #[structopt(short, long, env = "RUNBOT_REDIS_URI")]
     redis_uri: String,
-    #[structopt(short, long, env = "TABLE_FILE_PATH", parse(from_os_str))]
+    #[structopt(short, long, env = "RUNBOT_TABLE_FILE_PATH", parse(from_os_str))]
     table_path: PathBuf,
     #[structopt(
         short,
         long,
-        env = "WANDBOX_HOME",
+        env = "RUNBOT_WANDBOX_HOME",
         default_value = "https://wandbox.org/api/"
     )]
     wandbox_home: String,
