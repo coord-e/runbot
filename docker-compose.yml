@@ -7,7 +7,7 @@ services:
     environment:
       RUNBOT_REDIS_URI: redis://redis/
       RUNBOT_WANDBOX_HOME: https://wandbox.org/api/
-      RUNBOT_DISCORD_TOKEN: ${DISCORD_TOKEN:?}
+      RUNBOT_DISCORD_TOKEN: ${RUNBOT_DISCORD_TOKEN:?}
   redis:
     image: redis:6
     command: redis-server --appendonly yes
